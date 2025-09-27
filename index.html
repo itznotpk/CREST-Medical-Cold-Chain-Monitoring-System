@@ -688,6 +688,71 @@
                 background-color: rgba(95, 166, 132, 0.2);
             }
         }
+
+        /* Notification Styles */
+        .notification {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 12px rgba(9, 31, 47, 0.15);
+            border-left: 4px solid #5FA684;
+            animation: slideInRight 0.3s ease-out;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .notification:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 6px 16px rgba(9, 31, 47, 0.2);
+        }
+
+        .notification.warning {
+            border-left-color: #ed8936;
+        }
+
+        .notification.alert {
+            border-left-color: #e53e3e;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Loading Skeleton */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Enhanced Search Results */
+        .search-result-item {
+            padding: 10px;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .search-result-item:hover {
+            background: #f8f9fa;
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
     </style>
 </head>
 <body>
@@ -739,31 +804,77 @@
         <div class="main-content">
             <!-- Home / Overview Page -->
             <div id="home" class="page active">
-                <h1 style="margin-bottom: 30px;">OVERVIEW</h1>
-                
-                <!-- KPI Cards -->
-                <div class="kpi-grid">
-                    <div class="kpi-card">
-                        <div class="kpi-value">28</div>
-                        <div class="kpi-label">Active Cold Boxes</div>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="kpi-value">142</div>
-                        <div class="kpi-label">Completed This Month</div>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="kpi-value">96.8%</div>
-                        <div class="kpi-label">PASS Rate</div>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="kpi-value">8</div>
-                        <div class="kpi-label">Temperature Alerts (30d)</div>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="kpi-value">97.2%</div>
-                        <div class="kpi-label">Avg Compliance Rate</div>
+                <!-- Global Search & Quick Actions -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px;">
+                    <h1 style="margin: 0;">OVERVIEW</h1>
+                    <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                        <div style="position: relative;">
+                            <input type="text" id="globalSearch" placeholder="Search vaccines, batches, routes..." 
+                                   oninput="performGlobalSearch(this.value)" 
+                                   style="width: 280px; padding: 8px 35px 8px 15px; border: 2px solid #B0FC84; border-radius: 25px; font-size: 0.9rem;">
+                            <span style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: #5FA684;">🔍</span>
+                        </div>
                     </div>
                 </div>
+                
+                <!-- Search Results (hidden by default) -->
+                <div id="searchResults" style="display: none; background: white; border-radius: 8px; padding: 15px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(9, 31, 47, 0.1);">
+                    <h6 style="margin-bottom: 10px; color: #091F2F;">🔍 Search Results</h6>
+                    <div id="searchContent"></div>
+                    <button onclick="clearSearch()" style="margin-top: 10px; padding: 5px 10px; background: #f0f0f0; border: none; border-radius: 4px; cursor: pointer;">Clear Search</button>
+                </div>
+                
+                <!-- KPI Cards with Trend Indicators -->
+                <div class="kpi-grid">
+                    <div class="kpi-card" onclick="drillDownKPI('active-boxes')">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div>
+                                <div class="kpi-value">28</div>
+                                <div class="kpi-label">Active Cold Boxes</div>
+                            </div>
+                            <div style="color: #5FA684; font-size: 1.2rem;">📈 +3</div>
+                        </div>
+                    </div>
+                    <div class="kpi-card" onclick="drillDownKPI('completed')">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div>
+                                <div class="kpi-value">142</div>
+                                <div class="kpi-label">Completed This Month</div>
+                            </div>
+                            <div style="color: #5FA684; font-size: 1.2rem;">📈 +12</div>
+                        </div>
+                    </div>
+                    <div class="kpi-card" onclick="drillDownKPI('pass-rate')">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div>
+                                <div class="kpi-value">96.8%</div>
+                                <div class="kpi-label">PASS Rate</div>
+                            </div>
+                            <div style="color: #5FA684; font-size: 1.2rem;">📈 +1.2%</div>
+                        </div>
+                    </div>
+                    <div class="kpi-card" onclick="drillDownKPI('alerts')">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div>
+                                <div class="kpi-value">8</div>
+                                <div class="kpi-label">Temperature Alerts (30d)</div>
+                            </div>
+                            <div style="color: #ed8936; font-size: 1.2rem;">📉 -2</div>
+                        </div>
+                    </div>
+                    <div class="kpi-card" onclick="drillDownKPI('compliance')">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div>
+                                <div class="kpi-value">97.2%</div>
+                                <div class="kpi-label">Avg Compliance Rate</div>
+                            </div>
+                            <div style="color: #5FA684; font-size: 1.2rem;">📈 +0.5%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-time Notifications Panel -->
+                <div id="notificationPanel" style="position: fixed; top: 20px; right: 20px; z-index: 3000; max-width: 350px;"></div>
 
                 <!-- Recent Alerts -->
                 <div class="card">
@@ -987,7 +1098,7 @@
                                 <tr>
                                     <th>Shipment ID</th>
                                     <th>Destination</th>
-                                    <th>Medical Device</th>
+                                    <th>Vaccine Type</th>
                                     <th>Departure</th>
                                     <th>Current Temp</th>
                                     <th>Status</th>
@@ -1001,7 +1112,7 @@
                                 <tr id="outbound-KL-001">
                                     <td>PG-OUT-001</td>
                                     <td>Kuala Lumpur Central Hub</td>
-                                    <td>Vaccines</td>
+                                    <td>COVID-19 mRNA Vaccines</td>
                                     <td>2025-01-15 14:30 MYT</td>
                                     <td><span class="temp-normal">5.2°C</span></td>
                                     <td><span class="status-badge status-active">ACTIVE</span></td>
@@ -1014,7 +1125,7 @@
                                 <tr id="outbound-IP-001">
                                     <td>PG-OUT-002</td>
                                     <td>Ipoh Regional Hub</td>
-                                    <td>Antibiotics</td>
+                                    <td>Influenza Vaccines (Quadrivalent)</td>
                                     <td>2025-01-15 13:15 MYT</td>
                                     <td><span class="temp-normal">3.9°C</span></td>
                                     <td><span class="status-badge status-active">ACTIVE</span></td>
@@ -1027,7 +1138,7 @@
                                 <tr id="outbound-MLK-001">
                                     <td>PG-OUT-003</td>
                                     <td>Melaka Storage Facility</td>
-                                    <td>Blood Products</td>
+                                    <td>Hepatitis B Vaccines</td>
                                     <td>2025-01-15 12:00 MYT</td>
                                     <td><span class="temp-normal">5.7°C</span></td>
                                     <td><span class="status-badge status-active">ACTIVE</span></td>
@@ -1040,7 +1151,7 @@
                                 <tr id="outbound-KT-001">
                                     <td>PG-OUT-004</td>
                                     <td>Kuantan East Coast Hub</td>
-                                    <td>Heart Medication</td>
+                                    <td>HPV Vaccines (Gardasil 9)</td>
                                     <td>2025-01-15 15:45 MYT</td>
                                     <td><span class="temp-normal">4.3°C</span></td>
                                     <td><span class="status-badge status-active">ACTIVE</span></td>
@@ -1053,7 +1164,7 @@
                                 <tr id="outbound-KCH-001">
                                     <td>PG-OUT-005</td>
                                     <td>Kuching Medical Hub</td>
-                                    <td>Vaccines</td>
+                                    <td>MMR Vaccines (Triple Antigen)</td>
                                     <td>2025-01-15 11:30 MYT</td>
                                     <td><span class="temp-normal">6.1°C</span></td>
                                     <td><span class="status-badge status-active">ACTIVE</span></td>
@@ -1066,7 +1177,7 @@
                                 <tr id="outbound-SDK-001">
                                     <td>PG-OUT-006</td>
                                     <td>Sandakan Facility</td>
-                                    <td>Insulin Pens</td>
+                                    <td>Pneumococcal Vaccines</td>
                                     <td>2025-01-15 10:15 MYT</td>
                                     <td><span class="temp-normal">4.7°C</span></td>
                                     <td><span class="status-badge status-active">ACTIVE</span></td>
@@ -1079,7 +1190,7 @@
                                 <tr id="outbound-SG-001">
                                     <td>PG-OUT-007</td>
                                     <td>Singapore Medical Port</td>
-                                    <td>Blood Products</td>
+                                    <td>Varicella (Chickenpox) Vaccines</td>
                                     <td>2025-01-15 16:20 MYT</td>
                                     <td><span class="temp-normal">5.4°C</span></td>
                                     <td><span class="status-badge status-active">ACTIVE</span></td>
@@ -1092,7 +1203,7 @@
                                 <tr id="outbound-BKK-001">
                                     <td>PG-OUT-008</td>
                                     <td>Bangkok Distribution</td>
-                                    <td>Vaccines</td>
+                                    <td>Japanese Encephalitis Vaccines</td>
                                     <td>2025-01-15 09:45 MYT</td>
                                     <td><span class="temp-normal">6.0°C</span></td>
                                     <td><span class="status-badge status-active">ACTIVE</span></td>
@@ -1107,7 +1218,7 @@
                                 <tr id="outbound-JB-001" style="background: #fffbeb;">
                                     <td>PG-OUT-009</td>
                                     <td>Johor Bahru Distribution</td>
-                                    <td>Insulin Pens</td>
+                                    <td>Meningococcal Vaccines</td>
                                     <td>2025-01-15 14:00 MYT</td>
                                     <td><span class="temp-warning" style="color: #ed8936;">7.6°C</span></td>
                                     <td><span class="status-badge" style="background: #ed8936; color: white;">WARNING</span></td>
@@ -1120,7 +1231,7 @@
                                 <tr id="outbound-MRI-001" style="background: #fffbeb;">
                                     <td>PG-OUT-010</td>
                                     <td>Miri Northern Hub</td>
-                                    <td>Heart Medication</td>
+                                    <td>Rotavirus Vaccines</td>
                                     <td>2025-01-15 11:20 MYT</td>
                                     <td><span class="temp-warning" style="color: #ed8936;">7.8°C</span></td>
                                     <td><span class="status-badge" style="background: #ed8936; color: white;">WARNING</span></td>
@@ -1133,7 +1244,7 @@
                                 <tr id="outbound-HDY-001" style="background: #fffbeb;">
                                     <td>PG-OUT-011</td>
                                     <td>Hat Yai Border Hub</td>
-                                    <td>Antibiotics</td>
+                                    <td>DPT (Diphtheria) Vaccines</td>
                                     <td>2025-01-15 12:30 MYT</td>
                                     <td><span class="temp-warning" style="color: #ed8936;">7.9°C</span></td>
                                     <td><span class="status-badge" style="background: #ed8936; color: white;">WARNING</span></td>
@@ -1148,7 +1259,7 @@
                                 <tr id="outbound-KK-001" style="background: #fef2f2;">
                                     <td>PG-OUT-012</td>
                                     <td>Kota Kinabalu Center</td>
-                                    <td>Insulin Pens</td>
+                                    <td>Polio Vaccines (IPV)</td>
                                     <td>2025-01-15 08:00 MYT</td>
                                     <td><span class="temp-alert">9.2°C</span></td>
                                     <td><span class="status-badge" style="background: #e53e3e; color: white;">ALERT</span></td>
@@ -1161,7 +1272,7 @@
                                 <tr id="outbound-PKT-001" style="background: #fef2f2;">
                                     <td>PG-OUT-013</td>
                                     <td>Phuket Medical Center</td>
-                                    <td>Heart Medication</td>
+                                    <td>Typhoid Vaccines</td>
                                     <td>2025-01-15 13:45 MYT</td>
                                     <td><span class="temp-alert">8.9°C</span></td>
                                     <td><span class="status-badge" style="background: #e53e3e; color: white;">ALERT</span></td>
@@ -1476,7 +1587,11 @@
                 arrivalTime: '2025-01-15 14:30 MYT',
                 currentTemp: 6.2,
                 status: 'PASS',
-                medicalDevice: 'Insulin Pens',
+                vaccine: 'COVID-19 mRNA Vaccines',
+                batchNumber: 'COV2025-KL-093',
+                expiryDate: '2025-06-15',
+                manufacturer: 'Pfizer-BioNTech',
+                doses: 5000,
                 minTemp: 2.1,
                 maxTemp: 7.8,
                 avgTemp: 5.4,
@@ -1505,7 +1620,11 @@
                 arrivalTime: '2025-01-15 12:45 MYT',
                 currentTemp: 5.2,
                 status: 'PASS',
-                medicalDevice: 'Vaccines',
+                vaccine: 'Influenza Vaccines (Quadrivalent)',
+                batchNumber: 'FLU2025-IP-094',
+                expiryDate: '2025-12-31',
+                manufacturer: 'Sanofi Pasteur',
+                doses: 3200,
                 minTemp: 3.1,
                 maxTemp: 7.2,
                 avgTemp: 5.1,
@@ -1530,7 +1649,11 @@
                 arrivalTime: '2025-01-15 15:20 MYT',
                 currentTemp: 4.8,
                 status: 'PASS',
-                medicalDevice: 'Blood Products',
+                vaccine: 'Hepatitis B Vaccines',
+                batchNumber: 'HBV2025-JB-095',
+                expiryDate: '2025-08-20',
+                manufacturer: 'GSK',
+                doses: 2800,
                 loggerBattery: 85,
                 dockBay: 'A1',
                 temperatureData: [
@@ -1551,7 +1674,11 @@
                 arrivalTime: '2025-01-15 16:15 MYT',
                 currentTemp: 4.3,
                 status: 'PASS',
-                medicalDevice: 'Antibiotics',
+                vaccine: 'HPV Vaccines (Gardasil 9)',
+                batchNumber: 'HPV2025-KC-096',
+                expiryDate: '2025-09-10',
+                manufacturer: 'Merck & Co',
+                doses: 1500,
                 loggerBattery: 67,
                 dockBay: 'C2',
                 temperatureData: [
@@ -1570,7 +1697,11 @@
                 arrivalTime: '2025-01-15 17:30 MYT',
                 currentTemp: 9.2,
                 status: 'FAIL',
-                medicalDevice: 'Heart Medication',
+                vaccine: 'MMR Vaccines (Triple Antigen)',
+                batchNumber: 'MMR2025-SG-097',
+                expiryDate: '2025-04-30',
+                manufacturer: 'Merck & Co',
+                doses: 2200,
                 loggerBattery: 45,
                 dockBay: 'B3',
                 temperatureData: [
@@ -1587,6 +1718,168 @@
         let interactiveMap = null;
         let currentMapView = 'streets'; // 'streets' or 'satellite'
         let tempSelectedBoxes = new Set(); // For dock multi-select
+        let notificationCount = 0;
+        
+        // Global Search Functionality
+        function performGlobalSearch(query) {
+            const searchResults = document.getElementById('searchResults');
+            const searchContent = document.getElementById('searchContent');
+            
+            if (!query.trim()) {
+                searchResults.style.display = 'none';
+                return;
+            }
+            
+            const results = [];
+            query = query.toLowerCase();
+            
+            // Search through cold box data
+            Object.values(coldBoxData).forEach(box => {
+                if (box.id.toLowerCase().includes(query) || 
+                    box.vaccine.toLowerCase().includes(query) ||
+                    box.batchNumber?.toLowerCase().includes(query) ||
+                    box.route.toLowerCase().includes(query) ||
+                    box.origin.toLowerCase().includes(query)) {
+                    results.push({
+                        type: 'Incoming Vaccine',
+                        id: box.id,
+                        vaccine: box.vaccine,
+                        route: box.route,
+                        temp: box.currentTemp,
+                        status: box.status,
+                        action: () => showColdBoxDetails(box.id)
+                    });
+                }
+            });
+            
+            // Search through locations
+            coldChainLocations.forEach(location => {
+                if (location.name.toLowerCase().includes(query) ||
+                    location.id.toLowerCase().includes(query)) {
+                    results.push({
+                        type: 'Location',
+                        id: location.id,
+                        name: location.name,
+                        status: location.status,
+                        temp: location.temp,
+                        action: () => viewOutboundShipment(location.id)
+                    });
+                }
+            });
+            
+            if (results.length === 0) {
+                searchContent.innerHTML = '<div style="color: #666; text-align: center; padding: 20px;">No results found for "' + query + '"</div>';
+            } else {
+                searchContent.innerHTML = results.map(result => `
+                    <div class="search-result-item" onclick="result.action(); clearSearch();">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <strong>${result.type}: ${result.id || result.name}</strong><br>
+                                <small>${result.vaccine || result.name} • ${result.route || 'Location'}</small>
+                            </div>
+                            <div style="text-align: right;">
+                                <span style="color: ${result.temp > 8 ? '#e53e3e' : '#5FA684'};">${result.temp}°C</span><br>
+                                <span class="status-badge status-${result.status?.toLowerCase()}">${result.status}</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            searchResults.style.display = 'block';
+        }
+        
+        function clearSearch() {
+            document.getElementById('globalSearch').value = '';
+            document.getElementById('searchResults').style.display = 'none';
+        }
+        
+        // Enhanced Notification System
+        function showNotification(message, type = 'info', duration = 4000) {
+            const panel = document.getElementById('notificationPanel');
+            const notification = document.createElement('div');
+            const id = 'notification-' + (++notificationCount);
+            
+            notification.id = id;
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div style="flex: 1;">
+                        <div style="font-weight: bold; margin-bottom: 5px;">
+                            ${type === 'alert' ? '🚨' : type === 'warning' ? '⚠️' : 'ℹ️'} 
+                            ${type.toUpperCase()}
+                        </div>
+                        <div>${message}</div>
+                        <small style="color: #666; margin-top: 5px; display: block;">${new Date().toLocaleTimeString()}</small>
+                    </div>
+                    <button onclick="removeNotification('${id}')" style="background: none; border: none; font-size: 16px; cursor: pointer; color: #666;">×</button>
+                </div>
+            `;
+            
+            notification.onclick = () => removeNotification(id);
+            
+            panel.appendChild(notification);
+            
+            // Auto remove
+            setTimeout(() => removeNotification(id), duration);
+            
+            // Play sound for critical alerts
+            if (type === 'alert') {
+                playNotificationSound();
+            }
+        }
+        
+        function removeNotification(id) {
+            const notification = document.getElementById(id);
+            if (notification) {
+                notification.style.animation = 'slideInRight 0.3s ease-out reverse';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }
+        }
+        
+        function playNotificationSound() {
+            // Create audio context for notification sound
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                
+                oscillator.start();
+                oscillator.stop(audioContext.currentTime + 0.2);
+            } catch (e) {
+                console.log('Audio notification not available');
+            }
+        }
+        
+        // KPI Drill-down functionality
+        function drillDownKPI(kpiType) {
+            switch(kpiType) {
+                case 'active-boxes':
+                    showPageDirectly('bluetooth');
+                    showNotification('Showing active cold boxes at Penang dock', 'info');
+                    break;
+                case 'alerts':
+                    showPageDirectly('alerts');
+                    showNotification('Showing temperature alerts and excursions', 'info');
+                    break;
+                case 'completed':
+                    showPageDirectly('shipments');
+                    showNotification('Showing completed shipments', 'info');
+                    break;
+                default:
+                    showNotification(`Analyzing ${kpiType} data...`, 'info');
+            }
+        }
         
         // Malaysian Cold Chain Locations Data
         const coldChainLocations = [
@@ -1765,7 +2058,10 @@
                     <div class="coldbox-info">
                         <strong>From:</strong> ${box.origin}<br>
                         <strong>Route:</strong> ${box.route}<br>
-                        <strong>Medical Device:</strong> ${box.medicalDevice}<br>
+                        <strong>Vaccine:</strong> ${box.vaccine}<br>
+                        <strong>Batch:</strong> ${box.batchNumber}<br>
+                        <strong>Doses:</strong> ${box.doses ? box.doses.toLocaleString() : 'N/A'}<br>
+                        <strong>Expiry:</strong> ${box.expiryDate}<br>
                         <strong>Arrived:</strong> ${box.arrivalTime}<br>
                         <strong>Status:</strong> <span class="status-badge ${box.status === 'PASS' ? 'status-pass' : 'status-fail'}">${box.status}</span><br>
                         <strong>Logger Battery:</strong> ${box.loggerBattery}%
@@ -1818,7 +2114,7 @@
             
             const selectedBoxesList = Array.from(tempSelectedBoxes).map(boxId => {
                 const box = coldBoxData[boxId];
-                return `${box.id} (${box.medicalDevice})`;
+                return `${box.id} (${box.vaccine})`;
             }).join('\n');
             
             const confirmDialog = confirm(
@@ -1946,7 +2242,7 @@
             const modalTitle = document.getElementById('modalTitle');
             const modalContent = document.getElementById('modalContent');
             
-            modalTitle.textContent = `${box.id} - ${box.medicalDevice} Details`;
+            modalTitle.textContent = `${box.id} - ${box.vaccine} Details`;
             
             const isAlert = box.currentTemp > 8 || box.currentTemp < 2;
             
@@ -1956,7 +2252,11 @@
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; padding: 20px; background: #E1FCC0; border-radius: 8px;">
                         <div><strong>Route:</strong> ${box.route}</div>
                         <div><strong>Start:</strong> ${box.startTime}</div>
-                        <div><strong>Medical Device:</strong> ${box.medicalDevice}</div>
+                        <div><strong>Vaccine:</strong> ${box.vaccine}</div>
+                        <div><strong>Batch Number:</strong> ${box.batchNumber}</div>
+                        <div><strong>Manufacturer:</strong> ${box.manufacturer}</div>
+                        <div><strong>Doses:</strong> ${box.doses ? box.doses.toLocaleString() : 'N/A'}</div>
+                        <div><strong>Expiry Date:</strong> ${box.expiryDate}</div>
                         <div><strong>Current Temp:</strong> <span class="${isAlert ? 'temp-alert' : 'temp-normal'}">${box.currentTemp}°C</span></div>
                         <div><strong>Status:</strong> <span class="status-badge status-${box.status.toLowerCase()}">${box.status}</span></div>
                         <div><strong>Battery:</strong> ${box.loggerBattery}%</div>
@@ -2118,7 +2418,11 @@
                 'PG-OUT-001': {
                     id: 'PG-OUT-001',
                     destination: 'Kuala Lumpur Central Hub',
-                    medicalDevice: 'Vaccines',
+                    vaccine: 'COVID-19 mRNA Vaccines',
+                    batchNumber: 'COV2025-PG-001',
+                    manufacturer: 'Pfizer-BioNTech',
+                    doses: 8500,
+                    expiryDate: '2025-07-20',
                     departure: '2025-01-15 14:30 MYT',
                     currentTemp: 5.2,
                     status: 'ACTIVE',
@@ -2133,7 +2437,11 @@
                 'PG-OUT-009': {
                     id: 'PG-OUT-009',
                     destination: 'Johor Bahru Distribution',
-                    medicalDevice: 'Insulin Pens',
+                    vaccine: 'Meningococcal Vaccines',
+                    batchNumber: 'MEN2025-PG-009',
+                    manufacturer: 'Sanofi Pasteur',
+                    doses: 2400,
+                    expiryDate: '2025-11-15',
                     departure: '2025-01-15 14:00 MYT',
                     currentTemp: 7.6,
                     status: 'WARNING',
@@ -2149,7 +2457,11 @@
                 'PG-OUT-012': {
                     id: 'PG-OUT-012',
                     destination: 'Kota Kinabalu Center',
-                    medicalDevice: 'Insulin Pens',
+                    vaccine: 'Polio Vaccines (IPV)',
+                    batchNumber: 'IPV2025-PG-012',
+                    manufacturer: 'Sanofi Pasteur',
+                    doses: 1200,
+                    expiryDate: '2025-05-30',
                     departure: '2025-01-15 08:00 MYT',
                     currentTemp: 9.2,
                     status: 'ALERT',
@@ -2165,7 +2477,11 @@
                 'PG-OUT-013': {
                     id: 'PG-OUT-013',
                     destination: 'Phuket Medical Center',
-                    medicalDevice: 'Heart Medication',
+                    vaccine: 'Typhoid Vaccines',
+                    batchNumber: 'TYP2025-PG-013',
+                    manufacturer: 'GSK',
+                    doses: 950,
+                    expiryDate: '2025-03-25',
                     departure: '2025-01-15 13:45 MYT',
                     currentTemp: 8.9,
                     status: 'ALERT',
@@ -2217,7 +2533,11 @@
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; padding: 20px; background: ${shipment.status === 'ALERT' ? '#fef2f2' : shipment.status === 'WARNING' ? '#fffbeb' : '#E1FCC0'}; border-radius: 8px;">
                         <div><strong>Destination:</strong> ${shipment.destination}</div>
                         <div><strong>Departure:</strong> ${shipment.departure}</div>
-                        <div><strong>Medical Device:</strong> ${shipment.medicalDevice}</div>
+                        <div><strong>Vaccine:</strong> ${shipment.vaccine}</div>
+                        <div><strong>Batch Number:</strong> ${shipment.batchNumber || 'N/A'}</div>
+                        <div><strong>Manufacturer:</strong> ${shipment.manufacturer || 'N/A'}</div>
+                        <div><strong>Doses:</strong> ${shipment.doses ? shipment.doses.toLocaleString() : 'N/A'}</div>
+                        <div><strong>Expiry:</strong> ${shipment.expiryDate || 'N/A'}</div>
                         <div><strong>Current Temp:</strong> <span class="${isAlert ? 'temp-alert' : shipment.status === 'WARNING' ? 'temp-warning' : 'temp-normal'}">${shipment.currentTemp}°C</span></div>
                         <div><strong>Status:</strong> <span style="color: ${statusColor}; font-weight: bold;">${shipment.status}</span></div>
                         <div><strong>Current Location:</strong> ${shipment.currentLocation}</div>
@@ -2406,7 +2726,57 @@
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Medical Cold Chain Dashboard initialized for Malaysia');
             initializeInteractiveMap();
+            startRealTimeUpdates();
+            
+            // Request notification permission
+            if ('Notification' in window && Notification.permission === 'default') {
+                Notification.requestPermission();
+            }
+            
+            // Show welcome notification
+            setTimeout(() => {
+                showNotification('Welcome to Vaccine Cold Chain Monitoring Dashboard', 'info');
+            }, 1000);
         });
+        
+        // Real-time Updates Simulation
+        function startRealTimeUpdates() {
+            // Simulate temperature updates every 30 seconds
+            setInterval(() => {
+                updateTemperatures();
+            }, 30000);
+            
+            // Simulate alerts every 2 minutes  
+            setInterval(() => {
+                generateRandomAlert();
+            }, 120000);
+        }
+        
+        function updateTemperatures() {
+            // Simulate small temperature fluctuations
+            Object.values(coldBoxData).forEach(box => {
+                const fluctuation = (Math.random() - 0.5) * 0.4; // ±0.2°C
+                box.currentTemp = Math.round((box.currentTemp + fluctuation) * 10) / 10;
+                
+                // Check for alerts
+                if (box.currentTemp > 8 || box.currentTemp < 2) {
+                    box.status = 'FAIL';
+                    showNotification(`⚠️ TEMPERATURE ALERT: ${box.vaccine} (${box.id}) - ${box.currentTemp}°C`, 'alert');
+                }
+            });
+        }
+        
+        function generateRandomAlert() {
+            const alerts = [
+                'New vaccine batch arrived at dock',
+                'Route optimization suggested for JB→SG',
+                'Preventive maintenance due for cold storage unit',
+                'Weather conditions may affect transport times'
+            ];
+            
+            const randomAlert = alerts[Math.floor(Math.random() * alerts.length)];
+            showNotification(randomAlert, 'info');
+        }
 
         // Initialize Interactive Map
         function initializeInteractiveMap() {
