@@ -784,6 +784,11 @@
                 Outbound Shipments
             </div>
             
+            <div class="nav-item" onclick="showPage('cold-storage')">
+                <span class="nav-icon">📦</span>
+                Cold Box Inventory
+            </div>
+            
             <div class="nav-item" onclick="showPage('reports')">
                 <span class="nav-icon">📋</span>
                 Reports
@@ -826,49 +831,49 @@
                 
                 <!-- KPI Cards with Trend Indicators -->
                 <div class="kpi-grid">
-                    <div class="kpi-card" onclick="drillDownKPI('active-boxes')">
+                    <div class="kpi-card" onclick="drillDownKPI('active-shipments')" style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); color: white; border-left: 4px solid #1d4ed8;">
                         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                             <div>
-                                <div class="kpi-value">28</div>
-                                <div class="kpi-label">Active Cold Boxes</div>
+                                <div class="kpi-value" style="color: white;">28</div>
+                                <div class="kpi-label" style="color: #dbeafe;">Active Cold Boxes Shipments</div>
                             </div>
-                            <div style="color: #5FA684; font-size: 1.2rem;">📈 +3</div>
+                            <div style="color: #60a5fa; font-size: 1.2rem;">� +3</div>
                         </div>
                     </div>
-                    <div class="kpi-card" onclick="drillDownKPI('completed')">
+                    <div class="kpi-card" onclick="drillDownKPI('completed')" style="background: linear-gradient(135deg, #059669 0%, #10b981 100%); color: white; border-left: 4px solid #047857;">
                         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                             <div>
-                                <div class="kpi-value">142</div>
-                                <div class="kpi-label">Completed This Month</div>
+                                <div class="kpi-value" style="color: white;">142</div>
+                                <div class="kpi-label" style="color: #a7f3d0;">Completed This Month</div>
                             </div>
-                            <div style="color: #5FA684; font-size: 1.2rem;">📈 +12</div>
+                            <div style="color: #6ee7b7; font-size: 1.2rem;">📈 +12</div>
                         </div>
                     </div>
-                    <div class="kpi-card" onclick="drillDownKPI('pass-rate')">
+                    <div class="kpi-card" onclick="drillDownKPI('pass-rate')" style="background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%); color: white; border-left: 4px solid #6d28d9;">
                         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                             <div>
-                                <div class="kpi-value">96.8%</div>
-                                <div class="kpi-label">PASS Rate</div>
+                                <div class="kpi-value" style="color: white;">96.8%</div>
+                                <div class="kpi-label" style="color: #e9d5ff;">PASS Rate</div>
                             </div>
-                            <div style="color: #5FA684; font-size: 1.2rem;">📈 +1.2%</div>
+                            <div style="color: #c4b5fd; font-size: 1.2rem;">📈 +1.2%</div>
                         </div>
                     </div>
-                    <div class="kpi-card" onclick="drillDownKPI('alerts')">
+                    <div class="kpi-card" onclick="drillDownKPI('alerts')" style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%); color: white; border-left: 4px solid #b91c1c;">
                         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                             <div>
-                                <div class="kpi-value">8</div>
-                                <div class="kpi-label">Temperature Alerts (30d)</div>
+                                <div class="kpi-value" style="color: white;">8</div>
+                                <div class="kpi-label" style="color: #fecaca;">Temperature Alerts (30d)</div>
                             </div>
-                            <div style="color: #ed8936; font-size: 1.2rem;">📉 -2</div>
+                            <div style="color: #fca5a5; font-size: 1.2rem;">📉 -2</div>
                         </div>
                     </div>
-                    <div class="kpi-card" onclick="drillDownKPI('compliance')">
+                    <div class="kpi-card" onclick="drillDownKPI('esg-cycles')" style="background: linear-gradient(135deg, #15803d 0%, #22c55e 100%); color: white; border-left: 4px solid #166534;">
                         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                             <div>
-                                <div class="kpi-value">97.2%</div>
-                                <div class="kpi-label">Avg Compliance Rate</div>
+                                <div class="kpi-value" style="color: white;">2,115</div>
+                                <div class="kpi-label" style="color: #bbf7d0;">2025 Cold Boxes Reused Cycles</div>
                             </div>
-                            <div style="color: #5FA684; font-size: 1.2rem;">📈 +0.5%</div>
+                            <div style="color: #86efac; font-size: 1.2rem;">♻️ +156</div>
                         </div>
                     </div>
                 </div>
@@ -1063,7 +1068,9 @@
                                 <option value="ACTIVE">Active (18)</option>
                                 <option value="WARNING">Warning (7)</option>
                                 <option value="ALERT">Alert (3)</option>
-                                <option value="Delivered">Delivered</option>
+                                <option value="Delivered">Delivered (8)</option>
+                                <option value="Returning">Returning (5)</option>
+                                <option value="Returned">Returned (3)</option>
                             </select>
                         </div>
                         <div class="filter-group">
@@ -1090,7 +1097,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h2 class="card-title">Live Tracking - Shipments from Penang</h2>
-                        <span style="color: #2C677B;">28 total outbound shipments</span>
+                        <span style="color: #2C677B;">44 total outbound shipments (Active: 28 | Return Cycle: 16)</span>
                     </div>
                     <div class="table-container">
                         <table id="outbound-shipments-table">
@@ -1113,11 +1120,11 @@
                                     <td>PG-OUT-001</td>
                                     <td>Kuala Lumpur Central Hub</td>
                                     <td>COVID-19 mRNA Vaccines</td>
-                                    <td>2025-01-15 14:30 MYT</td>
+                                    <td>2025-09-28 14:30 MYT</td>
                                     <td><span class="temp-normal">5.2°C</span></td>
                                     <td><span class="status-badge status-active">ACTIVE</span></td>
                                     <td>En route - Ipoh</td>
-                                    <td>2025-01-15 18:45 MYT</td>
+                                    <td>2025-09-28 18:45 MYT</td>
                                     <td>
                                         <button class="btn btn-secondary" onclick="showOutboundDetails('PG-OUT-001')">Track</button>
                                     </td>
@@ -1126,7 +1133,7 @@
                                     <td>PG-OUT-002</td>
                                     <td>Ipoh Regional Hub</td>
                                     <td>Influenza Vaccines (Quadrivalent)</td>
-                                    <td>2025-01-15 13:15 MYT</td>
+                                    <td>2025-09-28 13:15 MYT</td>
                                     <td><span class="temp-normal">3.9°C</span></td>
                                     <td><span class="status-badge status-active">ACTIVE</span></td>
                                     <td>Arrived - Unloading</td>
@@ -1139,11 +1146,11 @@
                                     <td>PG-OUT-003</td>
                                     <td>Melaka Storage Facility</td>
                                     <td>Hepatitis B Vaccines</td>
-                                    <td>2025-01-15 12:00 MYT</td>
+                                    <td>2025-09-28 12:00 MYT</td>
                                     <td><span class="temp-normal">5.7°C</span></td>
                                     <td><span class="status-badge status-active">ACTIVE</span></td>
                                     <td>En route - Muar</td>
-                                    <td>2025-01-15 16:20 MYT</td>
+                                    <td>2025-09-28 16:20 MYT</td>
                                     <td>
                                         <button class="btn btn-secondary" onclick="showOutboundDetails('PG-OUT-003')">Track</button>
                                     </td>
@@ -1152,11 +1159,11 @@
                                     <td>PG-OUT-004</td>
                                     <td>Kuantan East Coast Hub</td>
                                     <td>HPV Vaccines (Gardasil 9)</td>
-                                    <td>2025-01-15 15:45 MYT</td>
+                                    <td>2025-09-28 15:45 MYT</td>
                                     <td><span class="temp-normal">4.3°C</span></td>
                                     <td><span class="status-badge status-active">ACTIVE</span></td>
                                     <td>En route - Bentong</td>
-                                    <td>2025-01-15 22:15 MYT</td>
+                                    <td>2025-09-28 22:15 MYT</td>
                                     <td>
                                         <button class="btn btn-secondary" onclick="showOutboundDetails('PG-OUT-004')">Track</button>
                                     </td>
@@ -1165,11 +1172,11 @@
                                     <td>PG-OUT-005</td>
                                     <td>Kuching Medical Hub</td>
                                     <td>MMR Vaccines (Triple Antigen)</td>
-                                    <td>2025-01-15 11:30 MYT</td>
+                                    <td>2025-09-28 11:30 MYT</td>
                                     <td><span class="temp-normal">6.1°C</span></td>
                                     <td><span class="status-badge status-active">ACTIVE</span></td>
                                     <td>In transit - Flight MH2574</td>
-                                    <td>2025-01-15 17:50 MYT</td>
+                                    <td>2025-09-28 17:50 MYT</td>
                                     <td>
                                         <button class="btn btn-secondary" onclick="showOutboundDetails('PG-OUT-005')">Track</button>
                                     </td>
@@ -1178,11 +1185,11 @@
                                     <td>PG-OUT-006</td>
                                     <td>Sandakan Facility</td>
                                     <td>Pneumococcal Vaccines</td>
-                                    <td>2025-01-15 10:15 MYT</td>
+                                    <td>2025-09-28 10:15 MYT</td>
                                     <td><span class="temp-normal">4.7°C</span></td>
                                     <td><span class="status-badge status-active">ACTIVE</span></td>
                                     <td>In transit - Flight MH2590</td>
-                                    <td>2025-01-15 19:30 MYT</td>
+                                    <td>2025-09-28 19:30 MYT</td>
                                     <td>
                                         <button class="btn btn-secondary" onclick="showOutboundDetails('PG-OUT-006')">Track</button>
                                     </td>
@@ -1191,11 +1198,11 @@
                                     <td>PG-OUT-007</td>
                                     <td>Singapore Medical Port</td>
                                     <td>Varicella (Chickenpox) Vaccines</td>
-                                    <td>2025-01-15 16:20 MYT</td>
+                                    <td>2025-09-28 16:20 MYT</td>
                                     <td><span class="temp-normal">5.4°C</span></td>
                                     <td><span class="status-badge status-active">ACTIVE</span></td>
                                     <td>En route - Kulai</td>
-                                    <td>2025-01-15 22:45 MYT</td>
+                                    <td>2025-09-28 22:45 MYT</td>
                                     <td>
                                         <button class="btn btn-secondary" onclick="showOutboundDetails('PG-OUT-007')">Track</button>
                                     </td>
@@ -1204,11 +1211,11 @@
                                     <td>PG-OUT-008</td>
                                     <td>Bangkok Distribution</td>
                                     <td>Japanese Encephalitis Vaccines</td>
-                                    <td>2025-01-15 09:45 MYT</td>
+                                    <td>2025-09-28 09:45 MYT</td>
                                     <td><span class="temp-normal">6.0°C</span></td>
                                     <td><span class="status-badge status-active">ACTIVE</span></td>
                                     <td>Border checkpoint - Padang Besar</td>
-                                    <td>2025-01-16 06:30 MYT</td>
+                                    <td>2025-09-29 06:30 MYT</td>
                                     <td>
                                         <button class="btn btn-secondary" onclick="showOutboundDetails('PG-OUT-008')">Track</button>
                                     </td>
@@ -1219,11 +1226,11 @@
                                     <td>PG-OUT-009</td>
                                     <td>Johor Bahru Distribution</td>
                                     <td>Meningococcal Vaccines</td>
-                                    <td>2025-01-15 14:00 MYT</td>
+                                    <td>2025-09-28 14:00 MYT</td>
                                     <td><span class="temp-warning" style="color: #ed8936;">7.6°C</span></td>
                                     <td><span class="status-badge" style="background: #ed8936; color: white;">WARNING</span></td>
                                     <td>En route - Seremban</td>
-                                    <td>2025-01-16 08:30 MYT</td>
+                                    <td>2025-09-29 08:30 MYT</td>
                                     <td>
                                         <button class="btn btn-warning" onclick="showOutboundDetails('PG-OUT-009')">Monitor</button>
                                     </td>
@@ -1232,11 +1239,11 @@
                                     <td>PG-OUT-010</td>
                                     <td>Miri Northern Hub</td>
                                     <td>Rotavirus Vaccines</td>
-                                    <td>2025-01-15 11:20 MYT</td>
+                                    <td>2025-09-28 11:20 MYT</td>
                                     <td><span class="temp-warning" style="color: #ed8936;">7.8°C</span></td>
                                     <td><span class="status-badge" style="background: #ed8936; color: white;">WARNING</span></td>
                                     <td>In transit - Flight MH2586</td>
-                                    <td>2025-01-15 18:15 MYT</td>
+                                    <td>2025-09-28 18:15 MYT</td>
                                     <td>
                                         <button class="btn btn-warning" onclick="showOutboundDetails('PG-OUT-010')">Monitor</button>
                                     </td>
@@ -1245,11 +1252,11 @@
                                     <td>PG-OUT-011</td>
                                     <td>Hat Yai Border Hub</td>
                                     <td>DPT (Diphtheria) Vaccines</td>
-                                    <td>2025-01-15 12:30 MYT</td>
+                                    <td>2025-09-28 12:30 MYT</td>
                                     <td><span class="temp-warning" style="color: #ed8936;">7.9°C</span></td>
                                     <td><span class="status-badge" style="background: #ed8936; color: white;">WARNING</span></td>
                                     <td>Customs clearance - Bukit Kayu Hitam</td>
-                                    <td>2025-01-15 20:45 MYT</td>
+                                    <td>2025-09-28 20:45 MYT</td>
                                     <td>
                                         <button class="btn btn-warning" onclick="showOutboundDetails('PG-OUT-011')">Monitor</button>
                                     </td>
@@ -1260,7 +1267,7 @@
                                     <td>PG-OUT-012</td>
                                     <td>Kota Kinabalu Center</td>
                                     <td>Polio Vaccines (IPV)</td>
-                                    <td>2025-01-15 08:00 MYT</td>
+                                    <td>2025-09-28 08:00 MYT</td>
                                     <td><span class="temp-alert">9.2°C</span></td>
                                     <td><span class="status-badge" style="background: #e53e3e; color: white;">ALERT</span></td>
                                     <td>In transit - Flight MH2592 - DELAYED</td>
@@ -1273,7 +1280,7 @@
                                     <td>PG-OUT-013</td>
                                     <td>Phuket Medical Center</td>
                                     <td>Typhoid Vaccines</td>
-                                    <td>2025-01-15 13:45 MYT</td>
+                                    <td>2025-09-28 13:45 MYT</td>
                                     <td><span class="temp-alert">8.9°C</span></td>
                                     <td><span class="status-badge" style="background: #e53e3e; color: white;">ALERT</span></td>
                                     <td>Stopped - Surat Thani checkpoint</td>
@@ -1282,8 +1289,377 @@
                                         <button class="btn btn-danger" onclick="showOutboundDetails('PG-OUT-013')">URGENT</button>
                                     </td>
                                 </tr>
+                                
+                                <!-- Delivered Shipments (8) - Cold boxes unloaded, ready for return -->
+                                <tr id="outbound-KLCC-001" style="background: #f0f8ff;">
+                                    <td>PG-OUT-014</td>
+                                    <td>KL City Center Clinic</td>
+                                    <td>COVID-19 mRNA Vaccines</td>
+                                    <td>2025-09-27 08:30 MYT</td>
+                                    <td><span style="color: #666;">N/A</span></td>
+                                    <td><span class="status-badge" style="background: #0ea5e9; color: white;">Delivered</span></td>
+                                    <td>Delivered - Cold box unloaded</td>
+                                    <td>Ready for return</td>
+                                    <td>
+                                        <button class="btn btn-secondary" onclick="showOutboundDetails('PG-OUT-014')">Details</button>
+                                    </td>
+                                </tr>
+                                <tr id="outbound-SHA-001" style="background: #f0f8ff;">
+                                    <td>PG-OUT-015</td>
+                                    <td>Shah Alam Hospital</td>
+                                    <td>Influenza Vaccines (Quadrivalent)</td>
+                                    <td>2025-01-14 09:15 MYT</td>
+                                    <td><span style="color: #666;">N/A</span></td>
+                                    <td><span class="status-badge" style="background: #0ea5e9; color: white;">Delivered</span></td>
+                                    <td>Delivered - Cold box unloaded</td>
+                                    <td>Ready for return</td>
+                                    <td>
+                                        <button class="btn btn-secondary" onclick="showOutboundDetails('PG-OUT-015')">Details</button>
+                                    </td>
+                                </tr>
+                                <tr id="outbound-SER-001" style="background: #f0f8ff;">
+                                    <td>PG-OUT-016</td>
+                                    <td>Seremban General Hospital</td>
+                                    <td>Hepatitis B Vaccines</td>
+                                    <td>2025-01-14 10:45 MYT</td>
+                                    <td><span style="color: #666;">N/A</span></td>
+                                    <td><span class="status-badge" style="background: #0ea5e9; color: white;">Delivered</span></td>
+                                    <td>Delivered - Cold box unloaded</td>
+                                    <td>Ready for return</td>
+                                    <td>
+                                        <button class="btn btn-secondary" onclick="showOutboundDetails('PG-OUT-016')">Details</button>
+                                    </td>
+                                </tr>
+                                <tr id="outbound-PUT-001" style="background: #f0f8ff;">
+                                    <td>PG-OUT-017</td>
+                                    <td>Putrajaya Health Center</td>
+                                    <td>HPV Vaccines (Gardasil 9)</td>
+                                    <td>2025-01-14 11:20 MYT</td>
+                                    <td><span style="color: #666;">N/A</span></td>
+                                    <td><span class="status-badge" style="background: #0ea5e9; color: white;">Delivered</span></td>
+                                    <td>Delivered - Cold box unloaded</td>
+                                    <td>Ready for return</td>
+                                    <td>
+                                        <button class="btn btn-secondary" onclick="showOutboundDetails('PG-OUT-017')">Details</button>
+                                    </td>
+                                </tr>
+                                <tr id="outbound-KUA-001" style="background: #f0f8ff;">
+                                    <td>PG-OUT-018</td>
+                                    <td>Kuantan Hospital</td>
+                                    <td>MMR Vaccines (Triple Antigen)</td>
+                                    <td>2025-01-13 14:30 MYT</td>
+                                    <td><span style="color: #666;">N/A</span></td>
+                                    <td><span class="status-badge" style="background: #0ea5e9; color: white;">Delivered</span></td>
+                                    <td>Delivered - Cold box unloaded</td>
+                                    <td>Ready for return</td>
+                                    <td>
+                                        <button class="btn btn-secondary" onclick="showOutboundDetails('PG-OUT-018')">Details</button>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Returning Shipments (5) - Cold boxes on way back to Penang -->
+                                <tr id="outbound-AMP-001" style="background: #fefce8;">
+                                    <td>PG-OUT-019</td>
+                                    <td>Ampang Hospital → Penang</td>
+                                    <td>Pneumococcal Vaccines</td>
+                                    <td>2025-01-13 07:45 MYT</td>
+                                    <td><span style="color: #666;">N/A</span></td>
+                                    <td><span class="status-badge" style="background: #f59e0b; color: white;">Returning</span></td>
+                                    <td>En route to Penang - Slim River</td>
+                                    <td>ETA: 2025-09-28 16:30 MYT</td>
+                                    <td>
+                                        <button class="btn btn-warning" onclick="showOutboundDetails('PG-OUT-019')">Track</button>
+                                    </td>
+                                </tr>
+                                <tr id="outbound-TAI-001" style="background: #fefce8;">
+                                    <td>PG-OUT-020</td>
+                                    <td>Taiping Hospital → Penang</td>
+                                    <td>Varicella (Chickenpox) Vaccines</td>
+                                    <td>2025-01-13 12:15 MYT</td>
+                                    <td><span style="color: #666;">N/A</span></td>
+                                    <td><span class="status-badge" style="background: #f59e0b; color: white;">Returning</span></td>
+                                    <td>En route to Penang - Kuala Kangsar</td>
+                                    <td>ETA: 2025-09-28 14:45 MYT</td>
+                                    <td>
+                                        <button class="btn btn-warning" onclick="showOutboundDetails('PG-OUT-020')">Track</button>
+                                    </td>
+                                </tr>
+                                <tr id="outbound-MUA-001" style="background: #fefce8;">
+                                    <td>PG-OUT-021</td>
+                                    <td>Muar Hospital → Penang</td>
+                                    <td>Japanese Encephalitis Vaccines</td>
+                                    <td>2025-01-12 16:00 MYT</td>
+                                    <td><span style="color: #666;">N/A</span></td>
+                                    <td><span class="status-badge" style="background: #f59e0b; color: white;">Returning</span></td>
+                                    <td>En route to Penang - Batu Pahat</td>
+                                    <td>ETA: 2025-09-28 20:15 MYT</td>
+                                    <td>
+                                        <button class="btn btn-warning" onclick="showOutboundDetails('PG-OUT-021')">Track</button>
+                                    </td>
+                                </tr>
+                                <tr id="outbound-BIN-001" style="background: #fefce8;">
+                                    <td>PG-OUT-022</td>
+                                    <td>Bintulu Medical Center → Penang</td>
+                                    <td>Meningococcal Vaccines</td>
+                                    <td>2025-01-12 10:30 MYT</td>
+                                    <td><span style="color: #666;">N/A</span></td>
+                                    <td><span class="status-badge" style="background: #f59e0b; color: white;">Returning</span></td>
+                                    <td>In transit - Flight MH2578</td>
+                                    <td>ETA: 2025-09-28 18:20 MYT</td>
+                                    <td>
+                                        <button class="btn btn-warning" onclick="showOutboundDetails('PG-OUT-022')">Track</button>
+                                    </td>
+                                </tr>
+                                <tr id="outbound-LAB-001" style="background: #fefce8;">
+                                    <td>PG-OUT-023</td>
+                                    <td>Labuan Hospital → Penang</td>
+                                    <td>Rotavirus Vaccines</td>
+                                    <td>2025-01-11 13:45 MYT</td>
+                                    <td><span style="color: #666;">N/A</span></td>
+                                    <td><span class="status-badge" style="background: #f59e0b; color: white;">Returning</span></td>
+                                    <td>In transit - Flight MH2594</td>
+                                    <td>ETA: 2025-09-28 15:10 MYT</td>
+                                    <td>
+                                        <button class="btn btn-warning" onclick="showOutboundDetails('PG-OUT-023')">Track</button>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Returned Shipments (3) - Cold boxes back at Penang for reuse -->
+                                <tr id="outbound-PET-001" style="background: #f0fdf4;">
+                                    <td>PG-OUT-024</td>
+                                    <td>Petaling Jaya Clinic</td>
+                                    <td>DPT (Diphtheria) Vaccines</td>
+                                    <td>2025-01-10 09:00 MYT</td>
+                                    <td><span style="color: #666;">N/A</span></td>
+                                    <td><span class="status-badge" style="background: #16a34a; color: white;">Returned</span></td>
+                                    <td>Returned to Penang Hub</td>
+                                    <td>Back at Penang</td>
+                                    <td>
+                                        <button class="btn btn-success" onclick="showOutboundDetails('PG-OUT-024')">History</button>
+                                    </td>
+                                </tr>
+                                <tr id="outbound-SUB-001" style="background: #f0fdf4;">
+                                    <td>PG-OUT-025</td>
+                                    <td>Subang Jaya Medical</td>
+                                    <td>Polio Vaccines (IPV)</td>
+                                    <td>2025-01-09 11:30 MYT</td>
+                                    <td><span style="color: #666;">N/A</span></td>
+                                    <td><span class="status-badge" style="background: #16a34a; color: white;">Returned</span></td>
+                                    <td>Returned to Penang Hub</td>
+                                    <td>Back at Penang</td>
+                                    <td>
+                                        <button class="btn btn-success" onclick="showOutboundDetails('PG-OUT-025')">History</button>
+                                    </td>
+                                </tr>
+                                <tr id="outbound-KAN-001" style="background: #f0fdf4;">
+                                    <td>PG-OUT-026</td>
+                                    <td>Kangar State Hospital</td>
+                                    <td>Typhoid Vaccines</td>
+                                    <td>2025-01-08 15:20 MYT</td>
+                                    <td><span style="color: #666;">N/A</span></td>
+                                    <td><span class="status-badge" style="background: #16a34a; color: white;">Returned</span></td>
+                                    <td>Returned to Penang Hub</td>
+                                    <td>Back at Penang</td>
+                                    <td>
+                                        <button class="btn btn-success" onclick="showOutboundDetails('PG-OUT-026')">History</button>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cold Box Inventory & Storage Page -->
+            <div id="cold-storage" class="page">
+                <h1 style="margin-bottom: 30px;">COLD BOX INVENTORY & STORAGE</h1>
+                
+                <!-- KPI Cards for Storage Overview -->
+                <div class="kpi-grid">
+                    <div class="kpi-card" onclick="filterStorageByStatus('all')">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div>
+                                <div class="kpi-value" id="total-boxes">45</div>
+                                <div class="kpi-label">Total Cold Boxes</div>
+                            </div>
+                            <div style="color: #5FA684; font-size: 1.2rem;">📦</div>
+                        </div>
+                    </div>
+                    <div class="kpi-card" onclick="filterStorageByStatus('available')">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div>
+                                <div class="kpi-value" id="available-boxes">28</div>
+                                <div class="kpi-label">Available for Use</div>
+                            </div>
+                            <div style="color: #5FA684; font-size: 1.2rem;">✅</div>
+                        </div>
+                    </div>
+                    <div class="kpi-card" onclick="filterStorageByStatus('in-use')">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div>
+                                <div class="kpi-value" id="in-use-boxes">12</div>
+                                <div class="kpi-label">Currently In Use</div>
+                            </div>
+                            <div style="color: #ed8936; font-size: 1.2rem;">🚚</div>
+                        </div>
+                    </div>
+                    <div class="kpi-card" onclick="filterStorageByStatus('maintenance')">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div>
+                                <div class="kpi-value" id="maintenance-boxes">5</div>
+                                <div class="kpi-label">Maintenance/Cleaning</div>
+                            </div>
+                            <div style="color: #2C677B; font-size: 1.2rem;">🔧</div>
+                        </div>
+                    </div>
+                    <div class="kpi-card" onclick="showESGVisualization()">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div>
+                                <div class="kpi-value" id="avg-cycles">47</div>
+                                <div class="kpi-label">Avg Reuse Cycles</div>
+                            </div>
+                            <div style="color: #B0FC84; font-size: 1.2rem;">♻️</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search and Filters -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Search & Filter Cold Boxes</h2>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="display: flex; align-items: center; gap: 8px; color: #5FA684;">
+                                <span>📍</span>
+                                <strong>Location: Medical Center Storage</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filters">
+                        <div class="filter-group">
+                            <label>Status</label>
+                            <select id="storage-status-filter" onchange="filterColdBoxStorage()">
+                                <option value="all">All Status (45)</option>
+                                <option value="available">Available (28)</option>
+                                <option value="validating">Validating (8)</option>
+                                <option value="in-use">In Use (12)</option>
+                                <option value="returned">Returned (3)</option>
+                                <option value="re-sterilising">Re-sterilising (2)</option>
+                                <option value="not-available">Not Available (5)</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Cycle Count Range</label>
+                            <select id="cycle-filter" onchange="filterColdBoxStorage()">
+                                <option value="all">All Cycles</option>
+                                <option value="low">1-20 cycles (New)</option>
+                                <option value="medium">21-50 cycles (Active)</option>
+                                <option value="high">51+ cycles (Veteran)</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Last Used</label>
+                            <select id="last-used-filter" onchange="filterColdBoxStorage()">
+                                <option value="all">Any Time</option>
+                                <option value="today">Today</option>
+                                <option value="week">This Week</option>
+                                <option value="month">This Month</option>
+                                <option value="over-month">Over 1 Month</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Search</label>
+                            <input type="text" id="storage-search" placeholder="Box ID, Shipment ID, or Notes..." oninput="filterColdBoxStorage()">
+                        </div>
+                        <div style="display: flex; gap: 10px; align-items: end;">
+                            <button class="btn btn-secondary" onclick="clearStorageFilters()">Clear Filters</button>
+                            <button class="btn btn-primary" onclick="exportStorageData()">📊 Export Data</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cold Box Inventory Table -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Cold Box Inventory</h2>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <span id="storage-count" style="color: #2C677B;">45 total boxes</span>
+                            <button class="btn btn-secondary" onclick="refreshStorageData()">🔄 Refresh</button>
+                            <button class="btn btn-primary" onclick="addNewColdBox()">➕ Add New Box</button>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table id="cold-storage-table">
+                            <thead>
+                                <tr>
+                                    <th>Box ID</th>
+                                    <th>Current Status</th>
+                                    <th>Last Shipment</th>
+                                    <th>Current Shipment</th>
+                                    <th>Reuse Cycles</th>
+                                    <th>Last Used</th>
+                                    <th>Next Maintenance</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="storage-tbody">
+                                <!-- Content will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ESG Visualization Panel -->
+                <div class="card" id="esg-panel" style="display: none;">
+                    <div class="card-header">
+                        <h2 class="card-title">♻️ Environmental Impact & Sustainability</h2>
+                        <button class="btn btn-secondary" onclick="hideESGVisualization()">✕ Close</button>
+                    </div>
+                    <div style="display: grid; gap: 20px;">
+                        <!-- ESG KPI Cards -->
+                        <div class="kpi-grid">
+                            <div class="kpi-card" style="border-left-color: #B0FC84;">
+                                <div class="kpi-value" id="total-reuses">2,115</div>
+                                <div class="kpi-label">Total Reuse Cycles</div>
+                            </div>
+                            <div class="kpi-card" style="border-left-color: #5FA684;">
+                                <div class="kpi-value" id="waste-prevented">84.6%</div>
+                                <div class="kpi-label">Waste Reduction vs Single-Use</div>
+                            </div>
+                            <div class="kpi-card" style="border-left-color: #2C677B;">
+                                <div class="kpi-value" id="carbon-saved">1,267</div>
+                                <div class="kpi-label">kg CO₂ Saved</div>
+                            </div>
+                            <div class="kpi-card" style="border-left-color: #ed8936;">
+                                <div class="kpi-value" id="cost-savings">RM 89,250</div>
+                                <div class="kpi-label">Cost Savings (YTD)</div>
+                            </div>
+                        </div>                        <!-- Top Performing Boxes -->
+                        <div>
+                            <h3 style="margin-bottom: 15px;">🏆 Top Green Rangers</h3>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                                <div class="kpi-card" style="border-left-color: #ffd700;">
+                                    <div style="text-align: center;">
+                                        <div style="font-size: 1.1rem; font-weight: bold; color: #091F2F;">MCB-4401</div>
+                                        <div style="font-size: 1.5rem; color: #ed8936; font-weight: bold;">87 cycles</div>
+                                        <div style="font-size: 0.8rem; color: #2C677B;">348 kg waste prevented</div>
+                                    </div>
+                                </div>
+                                <div class="kpi-card" style="border-left-color: #c0c0c0;">
+                                    <div style="text-align: center;">
+                                        <div style="font-size: 1.1rem; font-weight: bold; color: #091F2F;">MCB-4403</div>
+                                        <div style="font-size: 1.5rem; color: #5FA684; font-weight: bold;">81 cycles</div>
+                                        <div style="font-size: 0.8rem; color: #2C677B;">324 kg waste prevented</div>
+                                    </div>
+                                </div>
+                                <div class="kpi-card" style="border-left-color: #cd7f32;">
+                                    <div style="text-align: center;">
+                                        <div style="font-size: 1.1rem; font-weight: bold; color: #091F2F;">MCB-4402</div>
+                                        <div style="font-size: 1.5rem; color: #2C677B; font-weight: bold;">76 cycles</div>
+                                        <div style="font-size: 0.8rem; color: #2C677B;">304 kg waste prevented</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1499,21 +1875,21 @@
                                     <td>Ahmad Rahman</td>
                                     <td>ahmad.rahman@medicorp.my</td>
                                     <td>Administrator</td>
-                                    <td>2025-01-15 09:30 MYT</td>
+                                    <td>2025-09-28 09:30 MYT</td>
                                     <td><button class="btn btn-secondary">Edit</button></td>
                                 </tr>
                                 <tr>
                                     <td>Siti Nurhaliza</td>
                                     <td>siti.nurhaliza@medicorp.my</td>
                                     <td>QA Officer</td>
-                                    <td>2025-01-15 08:45 MYT</td>
+                                    <td>2025-09-28 08:45 MYT</td>
                                     <td><button class="btn btn-secondary">Edit</button></td>
                                 </tr>
                                 <tr>
                                     <td>Lim Wei Ming</td>
                                     <td>lim.weiming@medicorp.my</td>
                                     <td>Cold Chain Supervisor</td>
-                                    <td>2025-01-15 07:20 MYT</td>
+                                    <td>2025-09-28 07:20 MYT</td>
                                     <td><button class="btn btn-secondary">Edit</button></td>
                                 </tr>
                             </tbody>
@@ -1583,8 +1959,8 @@
                 boxId: 'MCB-4421',
                 route: 'Kuala Lumpur → Penang',
                 origin: 'Kuala Lumpur Central Hub',
-                startTime: '2025-01-15 08:00 MYT',
-                arrivalTime: '2025-01-15 14:30 MYT',
+                startTime: '2025-09-28 08:00 MYT',
+                arrivalTime: '2025-09-28 14:30 MYT',
                 currentTemp: 6.2,
                 status: 'PASS',
                 vaccine: 'COVID-19 mRNA Vaccines',
@@ -1616,8 +1992,8 @@
                 boxId: 'MCB-4422',
                 route: 'Ipoh → Penang',
                 origin: 'Ipoh Regional Hub',
-                startTime: '2025-01-15 10:15 MYT',
-                arrivalTime: '2025-01-15 12:45 MYT',
+                startTime: '2025-09-28 10:15 MYT',
+                arrivalTime: '2025-09-28 12:45 MYT',
                 currentTemp: 5.2,
                 status: 'PASS',
                 vaccine: 'Influenza Vaccines (Quadrivalent)',
@@ -1645,8 +2021,8 @@
                 boxId: 'MCB-4423',
                 route: 'Johor Bahru → Penang',
                 origin: 'Johor Bahru Distribution',
-                startTime: '2025-01-15 06:30 MYT',
-                arrivalTime: '2025-01-15 15:20 MYT',
+                startTime: '2025-09-28 06:30 MYT',
+                arrivalTime: '2025-09-28 15:20 MYT',
                 currentTemp: 4.8,
                 status: 'PASS',
                 vaccine: 'Hepatitis B Vaccines',
@@ -1670,8 +2046,8 @@
                 boxId: 'MCB-4424',
                 route: 'Kuching → Penang',
                 origin: 'Kuching Medical Hub',
-                startTime: '2025-01-15 05:00 MYT',
-                arrivalTime: '2025-01-15 16:15 MYT',
+                startTime: '2025-09-28 05:00 MYT',
+                arrivalTime: '2025-09-28 16:15 MYT',
                 currentTemp: 4.3,
                 status: 'PASS',
                 vaccine: 'HPV Vaccines (Gardasil 9)',
@@ -1693,8 +2069,8 @@
                 boxId: 'MCB-4425',
                 route: 'Singapore → Penang',
                 origin: 'Singapore Medical Port',
-                startTime: '2025-01-15 07:45 MYT',
-                arrivalTime: '2025-01-15 17:30 MYT',
+                startTime: '2025-09-28 07:45 MYT',
+                arrivalTime: '2025-09-28 17:30 MYT',
                 currentTemp: 9.2,
                 status: 'FAIL',
                 vaccine: 'MMR Vaccines (Triple Antigen)',
@@ -1711,6 +2087,61 @@
                     {time: '17:30', temp: 9.2}
                 ]
             }
+        };
+
+        // Cold Box Storage/Inventory Data for Penang Hub
+        const coldBoxStorage = {
+            // Available boxes (ready for use)
+            'MCB-4401': { id: 'MCB-4401', status: 'available', lastShipment: 'PG-OUT-024', currentShipment: null, reuseCycles: 87, lastUsed: '2025-09-27', nextMaintenance: '2025-10-15', location: 'Bay-A1', condition: 'Excellent', notes: 'High-performance veteran box' },
+            'MCB-4402': { id: 'MCB-4402', status: 'available', lastShipment: 'PG-OUT-025', currentShipment: null, reuseCycles: 76, lastUsed: '2025-09-26', nextMaintenance: '2025-10-20', location: 'Bay-A2', condition: 'Good', notes: 'Reliable performance' },
+            'MCB-4403': { id: 'MCB-4403', status: 'available', lastShipment: 'PG-OUT-026', currentShipment: null, reuseCycles: 81, lastUsed: '2025-09-25', nextMaintenance: '2025-10-18', location: 'Bay-A3', condition: 'Excellent', notes: 'Sustainability champion' },
+            'MCB-4404': { id: 'MCB-4404', status: 'available', lastShipment: 'PG-OUT-014', currentShipment: null, reuseCycles: 45, lastUsed: '2025-01-10', nextMaintenance: '2025-03-01', location: 'Bay-A4', condition: 'Good', notes: 'Recently serviced' },
+            'MCB-4405': { id: 'MCB-4405', status: 'available', lastShipment: 'PG-OUT-015', currentShipment: null, reuseCycles: 52, lastUsed: '2025-01-09', nextMaintenance: '2025-02-25', location: 'Bay-A5', condition: 'Good', notes: '' },
+            'MCB-4406': { id: 'MCB-4406', status: 'available', lastShipment: 'PG-OUT-016', currentShipment: null, reuseCycles: 38, lastUsed: '2025-01-08', nextMaintenance: '2025-03-05', location: 'Bay-A6', condition: 'Good', notes: '' },
+            'MCB-4407': { id: 'MCB-4407', status: 'available', lastShipment: 'PG-OUT-017', currentShipment: null, reuseCycles: 62, lastUsed: '2025-01-07', nextMaintenance: '2025-02-28', location: 'Bay-B1', condition: 'Good', notes: 'Due for calibration' },
+            'MCB-4408': { id: 'MCB-4408', status: 'available', lastShipment: 'PG-OUT-018', currentShipment: null, reuseCycles: 41, lastUsed: '2025-01-06', nextMaintenance: '2025-03-10', location: 'Bay-B2', condition: 'Excellent', notes: '' },
+            'MCB-4409': { id: 'MCB-4409', status: 'available', lastShipment: 'PG-OUT-027', currentShipment: null, reuseCycles: 29, lastUsed: '2025-01-05', nextMaintenance: '2025-03-15', location: 'Bay-B3', condition: 'Good', notes: 'New addition to fleet' },
+            'MCB-4410': { id: 'MCB-4410', status: 'available', lastShipment: 'PG-OUT-028', currentShipment: null, reuseCycles: 33, lastUsed: '2025-01-04', nextMaintenance: '2025-03-12', location: 'Bay-B4', condition: 'Good', notes: '' },
+            
+            // Validating boxes (being checked after return)
+            'MCB-4411': { id: 'MCB-4411', status: 'validating', lastShipment: 'PG-OUT-019', currentShipment: null, reuseCycles: 58, lastUsed: '2025-01-15', nextMaintenance: '2025-02-22', location: 'Validation-1', condition: 'Checking', notes: 'Returned today - temp validation' },
+            'MCB-4412': { id: 'MCB-4412', status: 'validating', lastShipment: 'PG-OUT-020', currentShipment: null, reuseCycles: 44, lastUsed: '2025-01-15', nextMaintenance: '2025-03-08', location: 'Validation-2', condition: 'Checking', notes: 'Returned today - integrity check' },
+            'MCB-4413': { id: 'MCB-4413', status: 'validating', lastShipment: 'PG-OUT-021', currentShipment: null, reuseCycles: 39, lastUsed: '2025-01-14', nextMaintenance: '2025-03-18', location: 'Validation-3', condition: 'Checking', notes: 'Long route return - full inspection' },
+            'MCB-4414': { id: 'MCB-4414', status: 'validating', lastShipment: 'PG-OUT-022', currentShipment: null, reuseCycles: 51, lastUsed: '2025-01-14', nextMaintenance: '2025-02-26', location: 'Validation-4', condition: 'Checking', notes: 'Air transport return - checking' },
+            'MCB-4415': { id: 'MCB-4415', status: 'validating', lastShipment: 'PG-OUT-023', currentShipment: null, reuseCycles: 67, lastUsed: '2025-01-14', nextMaintenance: '2025-02-12', location: 'Validation-5', condition: 'Checking', notes: 'High-cycle box - thorough check' },
+            'MCB-4416': { id: 'MCB-4416', status: 'validating', lastShipment: 'PG-OUT-029', currentShipment: null, reuseCycles: 25, lastUsed: '2025-01-13', nextMaintenance: '2025-03-25', location: 'Validation-6', condition: 'Checking', notes: 'Routine post-trip validation' },
+            'MCB-4417': { id: 'MCB-4417', status: 'validating', lastShipment: 'PG-OUT-030', currentShipment: null, reuseCycles: 35, lastUsed: '2025-01-13', nextMaintenance: '2025-03-20', location: 'Validation-7', condition: 'Checking', notes: 'Door seal inspection needed' },
+            'MCB-4418': { id: 'MCB-4418', status: 'validating', lastShipment: 'PG-OUT-031', currentShipment: null, reuseCycles: 42, lastUsed: '2025-01-12', nextMaintenance: '2025-03-02', location: 'Validation-8', condition: 'Checking', notes: 'Temperature logger calibration' },
+
+            // Currently in use boxes
+            'MCB-4421': { id: 'MCB-4421', status: 'in-use', lastShipment: 'PG-OUT-032', currentShipment: 'PG-OUT-001', reuseCycles: 23, lastUsed: '2025-01-15', nextMaintenance: '2025-04-01', location: 'En-Route', condition: 'Active', notes: 'KL route - active shipment' },
+            'MCB-4422': { id: 'MCB-4422', status: 'in-use', lastShipment: 'PG-OUT-033', currentShipment: 'PG-OUT-002', reuseCycles: 31, lastUsed: '2025-01-15', nextMaintenance: '2025-03-28', location: 'En-Route', condition: 'Active', notes: 'Ipoh route - delivered' },
+            'MCB-4423': { id: 'MCB-4423', status: 'in-use', lastShipment: 'PG-OUT-034', currentShipment: 'PG-OUT-003', reuseCycles: 19, lastUsed: '2025-01-15', nextMaintenance: '2025-04-10', location: 'En-Route', condition: 'Active', notes: 'Melaka route - in transit' },
+            'MCB-4424': { id: 'MCB-4424', status: 'in-use', lastShipment: 'PG-OUT-035', currentShipment: 'PG-OUT-004', reuseCycles: 55, lastUsed: '2025-01-15', nextMaintenance: '2025-02-28', location: 'En-Route', condition: 'Active', notes: 'Kuantan route - active' },
+            'MCB-4425': { id: 'MCB-4425', status: 'in-use', lastShipment: 'PG-OUT-036', currentShipment: 'PG-OUT-005', reuseCycles: 48, lastUsed: '2025-01-15', nextMaintenance: '2025-03-05', location: 'En-Route', condition: 'Active', notes: 'Kuching flight - active' },
+            'MCB-4426': { id: 'MCB-4426', status: 'in-use', lastShipment: 'PG-OUT-037', currentShipment: 'PG-OUT-006', reuseCycles: 37, lastUsed: '2025-01-15', nextMaintenance: '2025-03-15', location: 'En-Route', condition: 'Active', notes: 'Sandakan flight - active' },
+            'MCB-4427': { id: 'MCB-4427', status: 'in-use', lastShipment: 'PG-OUT-038', currentShipment: 'PG-OUT-007', reuseCycles: 64, lastUsed: '2025-01-15', nextMaintenance: '2025-02-18', location: 'En-Route', condition: 'Active', notes: 'Singapore route - active' },
+            'MCB-4428': { id: 'MCB-4428', status: 'in-use', lastShipment: 'PG-OUT-039', currentShipment: 'PG-OUT-008', reuseCycles: 72, lastUsed: '2025-01-15', nextMaintenance: '2025-02-10', location: 'En-Route', condition: 'Active', notes: 'Bangkok route - border crossing' },
+            'MCB-4429': { id: 'MCB-4429', status: 'in-use', lastShipment: 'PG-OUT-040', currentShipment: 'PG-OUT-009', reuseCycles: 41, lastUsed: '2025-01-15', nextMaintenance: '2025-03-08', location: 'En-Route', condition: 'Warning', notes: 'JB route - temp warning' },
+            'MCB-4430': { id: 'MCB-4430', status: 'in-use', lastShipment: 'PG-OUT-041', currentShipment: 'PG-OUT-010', reuseCycles: 36, lastUsed: '2025-01-15', nextMaintenance: '2025-03-18', location: 'En-Route', condition: 'Warning', notes: 'Miri flight - temp warning' },
+            'MCB-4431': { id: 'MCB-4431', status: 'in-use', lastShipment: 'PG-OUT-042', currentShipment: 'PG-OUT-011', reuseCycles: 28, lastUsed: '2025-01-15', nextMaintenance: '2025-03-25', location: 'En-Route', condition: 'Warning', notes: 'Hat Yai route - customs delay' },
+            'MCB-4432': { id: 'MCB-4432', status: 'in-use', lastShipment: 'PG-OUT-043', currentShipment: 'PG-OUT-012', reuseCycles: 59, lastUsed: '2025-01-15', nextMaintenance: '2025-02-25', location: 'En-Route', condition: 'Alert', notes: 'KK flight - critical temp alert' },
+
+            // Recently returned boxes
+            'MCB-4433': { id: 'MCB-4433', status: 'returned', lastShipment: 'PG-OUT-044', currentShipment: null, reuseCycles: 74, lastUsed: '2025-01-15', nextMaintenance: '2025-02-08', location: 'Returned-Bay', condition: 'Awaiting', notes: 'Just returned - awaiting processing' },
+            'MCB-4434': { id: 'MCB-4434', status: 'returned', lastShipment: 'PG-OUT-045', currentShipment: null, reuseCycles: 46, lastUsed: '2025-01-15', nextMaintenance: '2025-03-01', location: 'Returned-Bay', condition: 'Awaiting', notes: 'Successful delivery completed' },
+            'MCB-4435': { id: 'MCB-4435', status: 'returned', lastShipment: 'PG-OUT-046', currentShipment: null, reuseCycles: 53, lastUsed: '2025-01-14', nextMaintenance: '2025-02-28', location: 'Returned-Bay', condition: 'Awaiting', notes: 'Long-haul return completed' },
+
+            // Re-sterilising boxes
+            'MCB-4436': { id: 'MCB-4436', status: 're-sterilising', lastShipment: 'PG-OUT-047', currentShipment: null, reuseCycles: 83, lastUsed: '2025-01-13', nextMaintenance: '2025-02-05', location: 'Sterilisation-1', condition: 'Cleaning', notes: 'High-cycle box - deep cleaning cycle' },
+            'MCB-4437': { id: 'MCB-4437', status: 're-sterilising', lastShipment: 'PG-OUT-048', currentShipment: null, reuseCycles: 69, lastUsed: '2025-01-13', nextMaintenance: '2025-02-15', location: 'Sterilisation-2', condition: 'Cleaning', notes: 'Routine deep sterilisation' },
+
+            // Not available (maintenance/repair)
+            'MCB-4438': { id: 'MCB-4438', status: 'not-available', lastShipment: 'PG-OUT-049', currentShipment: null, reuseCycles: 91, lastUsed: '2025-01-10', nextMaintenance: '2025-01-20', location: 'Maintenance-1', condition: 'Repair', notes: 'Door seal replacement needed' },
+            'MCB-4439': { id: 'MCB-4439', status: 'not-available', lastShipment: 'PG-OUT-050', currentShipment: null, reuseCycles: 78, lastUsed: '2025-01-09', nextMaintenance: '2025-01-25', location: 'Maintenance-2', condition: 'Repair', notes: 'Temperature sensor calibration' },
+            'MCB-4440': { id: 'MCB-4440', status: 'not-available', lastShipment: 'PG-OUT-051', currentShipment: null, reuseCycles: 65, lastUsed: '2025-01-08', nextMaintenance: '2025-01-30', location: 'Maintenance-3', condition: 'Repair', notes: 'Insulation integrity check' },
+            'MCB-4441': { id: 'MCB-4441', status: 'not-available', lastShipment: 'PG-OUT-052', currentShipment: null, reuseCycles: 49, lastUsed: '2025-01-07', nextMaintenance: '2025-02-01', location: 'Maintenance-4', condition: 'Repair', notes: 'Battery replacement required' },
+            'MCB-4442': { id: 'MCB-4442', status: 'not-available', lastShipment: 'PG-OUT-053', currentShipment: null, reuseCycles: 32, lastUsed: '2025-01-06', nextMaintenance: '2025-02-05', location: 'Maintenance-5', condition: 'Repair', notes: 'Lock mechanism repair' }
         };
 
         let selectedColdBoxes = new Set();
@@ -1752,7 +2183,7 @@
                 }
             });
             
-            // Search through locations
+            // Search through cold chain locations
             coldChainLocations.forEach(location => {
                 if (location.name.toLowerCase().includes(query) ||
                     location.id.toLowerCase().includes(query)) {
@@ -1767,6 +2198,24 @@
                 }
             });
             
+            // Search through cold box storage
+            Object.values(coldBoxStorage).forEach(box => {
+                if (box.id.toLowerCase().includes(query) ||
+                    box.lastShipment?.toLowerCase().includes(query) ||
+                    box.currentShipment?.toLowerCase().includes(query) ||
+                    box.notes.toLowerCase().includes(query) ||
+                    box.location.toLowerCase().includes(query)) {
+                    results.push({
+                        type: 'Cold Box',
+                        id: box.id,
+                        status: box.status,
+                        location: box.location,
+                        cycles: box.reuseCycles,
+                        action: () => { showPageDirectly('cold-storage'); showBoxDetails(box.id); }
+                    });
+                }
+            });
+            
             if (results.length === 0) {
                 searchContent.innerHTML = '<div style="color: #666; text-align: center; padding: 20px;">No results found for "' + query + '"</div>';
             } else {
@@ -1775,10 +2224,15 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <div>
                                 <strong>${result.type}: ${result.id || result.name}</strong><br>
-                                <small>${result.vaccine || result.name} • ${result.route || 'Location'}</small>
+                                <small>${result.vaccine || result.name || result.location} • ${result.route || result.type}</small>
                             </div>
                             <div style="text-align: right;">
-                                <span style="color: ${result.temp > 8 ? '#e53e3e' : '#5FA684'};">${result.temp}°C</span><br>
+                                ${result.temp ? 
+                                    `<span style="color: ${result.temp > 8 ? '#e53e3e' : '#5FA684'};">${result.temp}°C</span><br>` : 
+                                    result.cycles ? 
+                                        `<span style="color: #5FA684;">${result.cycles} cycles</span><br>` : 
+                                        ''
+                                }
                                 <span class="status-badge status-${result.status?.toLowerCase()}">${result.status}</span>
                             </div>
                         </div>
@@ -1864,9 +2318,9 @@
         // KPI Drill-down functionality
         function drillDownKPI(kpiType) {
             switch(kpiType) {
-                case 'active-boxes':
-                    showPageDirectly('bluetooth');
-                    showNotification('Showing active cold boxes at Penang dock', 'info');
+                case 'active-shipments':
+                    showPageDirectly('outbound');
+                    showNotification('Showing active cold box shipments from Penang', 'info');
                     break;
                 case 'alerts':
                     showPageDirectly('alerts');
@@ -1875,6 +2329,11 @@
                 case 'completed':
                     showPageDirectly('shipments');
                     showNotification('Showing completed shipments', 'info');
+                    break;
+                case 'esg-cycles':
+                    showPageDirectly('cold-storage');
+                    setTimeout(() => showESGVisualization(), 500);
+                    showNotification('Showing ESG sustainability metrics', 'info');
                     break;
                 default:
                     showNotification(`Analyzing ${kpiType} data...`, 'info');
@@ -1925,6 +2384,11 @@
             // Update selected shipments table when switching to shipments page
             if (pageId === 'shipments') {
                 updateSelectedShipmentsTable();
+            }
+            
+            // Initialize storage table when switching to cold storage page
+            if (pageId === 'cold-storage') {
+                populateStorageTable();
             }
         }
 
@@ -2493,6 +2957,70 @@
                     distance: '580 km',
                     progress: '70%',
                     issue: 'Customs delay + cooling system stress from prolonged stop'
+                },
+                // Delivered shipments
+                'PG-OUT-014': {
+                    id: 'PG-OUT-014',
+                    destination: 'KL City Center Clinic',
+                    vaccine: 'COVID-19 mRNA Vaccines',
+                    batchNumber: 'COV2025-PG-014',
+                    manufacturer: 'Pfizer-BioNTech',
+                    doses: 3200,
+                    expiryDate: '2025-08-15',
+                    departure: '2025-01-14 08:30 MYT',
+                    delivered: '2025-01-14 15:45 MYT',
+                    status: 'Delivered',
+                    currentLocation: 'Delivered - Cold box unloaded',
+                    driver: 'Lim Wei Jie',
+                    vehicle: 'Cold Chain Truck PG-CC-014',
+                    route: 'Penang → KL City Center',
+                    distance: '350 km',
+                    progress: '100%',
+                    deliveryNote: 'All vaccines successfully delivered and stored. Cold box ready for return journey.'
+                },
+                // Returning shipments
+                'PG-OUT-019': {
+                    id: 'PG-OUT-019',
+                    destination: 'Ampang Hospital → Penang',
+                    vaccine: 'Pneumococcal Vaccines',
+                    batchNumber: 'PNE2025-PG-019',
+                    manufacturer: 'Pfizer',
+                    doses: 1800,
+                    expiryDate: '2025-06-10',
+                    departure: '2025-01-13 07:45 MYT',
+                    delivered: '2025-01-13 16:20 MYT',
+                    returnStart: '2025-01-14 09:30 MYT',
+                    status: 'Returning',
+                    currentLocation: 'En route to Penang - Slim River',
+                    eta: '2025-01-15 16:30 MYT',
+                    driver: 'Muthu Kumar',
+                    vehicle: 'Empty Cold Box Return Truck RET-019',
+                    route: 'Ampang → Slim River → Penang',
+                    distance: '385 km',
+                    progress: '65%',
+                    returnNote: 'Empty cold box returning to Penang hub for cleaning and reuse'
+                },
+                // Returned shipments
+                'PG-OUT-024': {
+                    id: 'PG-OUT-024',
+                    destination: 'Petaling Jaya Clinic',
+                    vaccine: 'DPT (Diphtheria) Vaccines',
+                    batchNumber: 'DPT2025-PG-024',
+                    manufacturer: 'GSK',
+                    doses: 2100,
+                    expiryDate: '2025-04-18',
+                    departure: '2025-01-10 09:00 MYT',
+                    delivered: '2025-01-10 14:30 MYT',
+                    returnStart: '2025-01-11 08:15 MYT',
+                    returned: '2025-01-11 15:45 MYT',
+                    status: 'Returned',
+                    currentLocation: 'Returned to Penang Hub',
+                    driver: 'Chan Ah Kow',
+                    vehicle: 'Completed - Cold Box at Penang',
+                    route: 'Penang → PJ → Penang (Complete)',
+                    distance: '750 km (Total)',
+                    progress: '100%',
+                    completedCycle: 'Cold box has returned to Penang hub'
                 }
             };
 
@@ -2630,7 +3158,27 @@
                     </div>
                     ` : ''}
                     
-                    ${shipment.issue ? `
+                    ${shipment.status === 'Delivered' ? `
+                    <div style="padding: 15px; background: #f0f8ff; border-left: 4px solid #0ea5e9; border-radius: 8px;">
+                        <strong style="color: #0ea5e9;">📦 DELIVERY COMPLETED:</strong><br>
+                        Delivered: ${shipment.delivered}<br>
+                        ${shipment.deliveryNote}<br>
+                        <strong>Cold box ready for return to Penang hub</strong>
+                    </div>
+                    ` : shipment.status === 'Returning' ? `
+                    <div style="padding: 15px; background: #fefce8; border-left: 4px solid #f59e0b; border-radius: 8px;">
+                        <strong style="color: #f59e0b;">🚚 RETURNING TO PENANG:</strong><br>
+                        Return Started: ${shipment.returnStart}<br>
+                        ${shipment.returnNote}<br>
+                        <strong>Progress: ${shipment.progress} to Penang hub</strong>
+                    </div>
+                    ` : shipment.status === 'Returned' ? `
+                    <div style="padding: 15px; background: #f0fdf4; border-left: 4px solid #16a34a; border-radius: 8px;">
+                        <strong style="color: #16a34a;">✅ RETURNED TO PENANG:</strong><br>
+                        Returned: ${shipment.returned}<br>
+                        ${shipment.completedCycle}<br>
+                    </div>
+                    ` : shipment.issue ? `
                     <div style="padding: 15px; background: ${shipment.status === 'ALERT' ? '#fef2f2' : '#fffbeb'}; border-left: 4px solid ${statusColor}; border-radius: 8px;">
                         <strong style="color: ${statusColor};">⚠️ ${shipment.status} DETAILS:</strong><br>
                         ${shipment.issue}
@@ -2722,11 +3270,479 @@
             }
         }
 
-        // Initialize dashboard
+        // Cold Box Storage Functions
+        function filterStorageByStatus(status) {
+            // Update status filter and apply filter
+            const statusFilter = document.getElementById('storage-status-filter');
+            if (statusFilter) {
+                statusFilter.value = status;
+                filterColdBoxStorage();
+            }
+            
+            // Switch to cold storage page if not already there
+            const currentPage = document.querySelector('.page.active').id;
+            if (currentPage !== 'cold-storage') {
+                showPageDirectly('cold-storage');
+            }
+        }
+
+        function filterColdBoxStorage() {
+            const statusFilter = document.getElementById('storage-status-filter').value;
+            const cycleFilter = document.getElementById('cycle-filter').value;
+            const lastUsedFilter = document.getElementById('last-used-filter').value;
+            const searchText = document.getElementById('storage-search').value.toLowerCase();
+            
+            populateStorageTable(statusFilter, cycleFilter, lastUsedFilter, searchText);
+        }
+
+        function clearStorageFilters() {
+            document.getElementById('storage-status-filter').value = 'all';
+            document.getElementById('cycle-filter').value = 'all';
+            document.getElementById('last-used-filter').value = 'all';
+            document.getElementById('storage-search').value = '';
+            filterColdBoxStorage();
+        }
+
+        function populateStorageTable(statusFilter = 'all', cycleFilter = 'all', lastUsedFilter = 'all', searchText = '') {
+            const tbody = document.getElementById('storage-tbody');
+            const countElement = document.getElementById('storage-count');
+            
+            let filteredBoxes = Object.values(coldBoxStorage);
+            
+            // Apply status filter
+            if (statusFilter !== 'all') {
+                filteredBoxes = filteredBoxes.filter(box => box.status === statusFilter);
+            }
+            
+            // Apply cycle filter
+            if (cycleFilter !== 'all') {
+                filteredBoxes = filteredBoxes.filter(box => {
+                    if (cycleFilter === 'low') return box.reuseCycles >= 1 && box.reuseCycles <= 20;
+                    if (cycleFilter === 'medium') return box.reuseCycles >= 21 && box.reuseCycles <= 50;
+                    if (cycleFilter === 'high') return box.reuseCycles >= 51;
+                    return true;
+                });
+            }
+            
+            // Apply last used filter
+            if (lastUsedFilter !== 'all') {
+                const today = new Date();
+                const todayStr = today.toISOString().split('T')[0];
+                const weekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+                const monthAgo = new Date(today.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+                
+                filteredBoxes = filteredBoxes.filter(box => {
+                    const lastUsed = box.lastUsed;
+                    if (lastUsedFilter === 'today') return lastUsed === todayStr;
+                    if (lastUsedFilter === 'week') return lastUsed >= weekAgo;
+                    if (lastUsedFilter === 'month') return lastUsed >= monthAgo;
+                    if (lastUsedFilter === 'over-month') return lastUsed < monthAgo;
+                    return true;
+                });
+            }
+            
+            // Apply search filter
+            if (searchText) {
+                filteredBoxes = filteredBoxes.filter(box => 
+                    box.id.toLowerCase().includes(searchText) ||
+                    box.lastShipment?.toLowerCase().includes(searchText) ||
+                    box.currentShipment?.toLowerCase().includes(searchText) ||
+                    box.notes.toLowerCase().includes(searchText)
+                );
+            }
+            
+            // Update count
+            countElement.textContent = `${filteredBoxes.length} boxes (filtered from ${Object.keys(coldBoxStorage).length} total)`;
+            
+            // Generate table rows
+            tbody.innerHTML = '';
+            if (filteredBoxes.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="8" style="text-align: center; color: #2C677B; padding: 40px;">
+                            No cold boxes found matching the current filters.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            filteredBoxes.forEach(box => {
+                const statusColor = getStatusColor(box.status);
+                const cycleLevel = getCycleLevel(box.reuseCycles);
+                const daysSinceUsed = getDaysSinceUsed(box.lastUsed);
+                
+                const row = document.createElement('tr');
+                row.style.backgroundColor = getRowBackgroundColor(box.status);
+                
+                row.innerHTML = `
+                    <td>
+                        <strong>${box.id}</strong><br>
+                        <small style="color: #666;">${box.location}</small>
+                    </td>
+                    <td>
+                        <span class="status-badge" style="background: ${statusColor}; color: white; font-size: 0.8rem; padding: 4px 8px; border-radius: 12px;">
+                            ${getStatusDisplayName(box.status)}
+                        </span>
+                    </td>
+                    <td>
+                        ${box.lastShipment || 'N/A'}<br>
+                        <small style="color: #666;">${box.lastUsed}</small>
+                    </td>
+                    <td>
+                        ${box.currentShipment ? 
+                            `<strong style="color: #ed8936;">${box.currentShipment}</strong><br><small style="color: #ed8936;">In Transit</small>` : 
+                            '<span style="color: #666;">None</span>'
+                        }
+                    </td>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 5px;">
+                            <strong style="font-size: 1.1rem; color: ${cycleLevel.color};">${box.reuseCycles}</strong>
+                            <span style="font-size: 0.8rem; color: ${cycleLevel.color};">${cycleLevel.badge}</span>
+                        </div>
+                        <small style="color: #666;">${cycleLevel.label}</small>
+                    </td>
+                    <td>
+                        ${box.lastUsed}<br>
+                        <small style="color: ${daysSinceUsed.color};">${daysSinceUsed.text}</small>
+                    </td>
+                    <td>
+                        ${box.nextMaintenance}<br>
+                        <small style="color: ${getMaintenanceUrgency(box.nextMaintenance).color};">
+                            ${getMaintenanceUrgency(box.nextMaintenance).text}
+                        </small>
+                    </td>
+                    <td>
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <button class="btn btn-secondary" onclick="showBoxDetails('${box.id}')" style="padding: 4px 8px; font-size: 0.8rem;">View</button>
+                            ${getActionButtons(box)}
+                        </div>
+                    </td>
+                `;
+                
+                tbody.appendChild(row);
+            });
+        }
+
+        function getStatusColor(status) {
+            const colors = {
+                'available': '#5FA684',
+                'validating': '#2C677B',
+                'in-use': '#ed8936',
+                'returned': '#0ea5e9',
+                're-sterilising': '#8b5cf6',
+                'not-available': '#e53e3e'
+            };
+            return colors[status] || '#666';
+        }
+
+        function getStatusDisplayName(status) {
+            const names = {
+                'available': 'Available',
+                'validating': 'Validating',
+                'in-use': 'In Use',
+                'returned': 'Returned',
+                're-sterilising': 'Re-sterilising',
+                'not-available': 'Not Available'
+            };
+            return names[status] || status;
+        }
+
+        function getRowBackgroundColor(status) {
+            const colors = {
+                'available': '#f0fdf4',
+                'validating': '#f8fafc',
+                'in-use': '#fffbeb',
+                'returned': '#f0f9ff',
+                're-sterilising': '#faf5ff',
+                'not-available': '#fef2f2'
+            };
+            return colors[status] || 'white';
+        }
+
+        function getCycleLevel(cycles) {
+            if (cycles <= 20) {
+                return { color: '#5FA684', badge: '🆕', label: 'New' };
+            } else if (cycles <= 50) {
+                return { color: '#ed8936', badge: '⚡', label: 'Active' };
+            } else {
+                return { color: '#8b5cf6', badge: '🏆', label: 'Veteran' };
+            }
+        }
+
+        function getDaysSinceUsed(lastUsed) {
+            const today = new Date();
+            const lastUsedDate = new Date(lastUsed);
+            const diffTime = Math.abs(today - lastUsedDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            if (diffDays === 0) {
+                return { text: 'Today', color: '#5FA684' };
+            } else if (diffDays === 1) {
+                return { text: '1 day ago', color: '#5FA684' };
+            } else if (diffDays <= 7) {
+                return { text: `${diffDays} days ago`, color: '#ed8936' };
+            } else if (diffDays <= 30) {
+                return { text: `${diffDays} days ago`, color: '#2C677B' };
+            } else {
+                return { text: `${diffDays} days ago`, color: '#e53e3e' };
+            }
+        }
+
+        function getMaintenanceUrgency(nextMaintenance) {
+            const today = new Date();
+            const maintenanceDate = new Date(nextMaintenance);
+            const diffTime = maintenanceDate - today;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            if (diffDays < 0) {
+                return { text: 'OVERDUE', color: '#e53e3e' };
+            } else if (diffDays <= 7) {
+                return { text: `${diffDays} days`, color: '#ed8936' };
+            } else if (diffDays <= 30) {
+                return { text: `${diffDays} days`, color: '#2C677B' };
+            } else {
+                return { text: `${diffDays} days`, color: '#5FA684' };
+            }
+        }
+
+        function getActionButtons(box) {
+            switch (box.status) {
+                case 'available':
+                    return '<button class="btn btn-primary" onclick="assignToShipment(\'' + box.id + '\')" style="padding: 4px 8px; font-size: 0.8rem;">Assign</button>';
+                case 'in-use':
+                    return '<button class="btn btn-warning" onclick="trackShipment(\'' + box.currentShipment + '\')" style="padding: 4px 8px; font-size: 0.8rem;">Track</button>';
+                case 'returned':
+                    return '<button class="btn btn-secondary" onclick="startValidation(\'' + box.id + '\')" style="padding: 4px 8px; font-size: 0.8rem;">Validate</button>';
+                case 'validating':
+                    return '<button class="btn btn-secondary" onclick="completeValidation(\'' + box.id + '\')" style="padding: 4px 8px; font-size: 0.8rem;">Complete</button>';
+                case 're-sterilising':
+                    return '<button class="btn btn-secondary" onclick="completeSterilisation(\'' + box.id + '\')" style="padding: 4px 8px; font-size: 0.8rem;">Complete</button>';
+                case 'not-available':
+                    return '<button class="btn btn-danger" onclick="scheduleRepair(\'' + box.id + '\')" style="padding: 4px 8px; font-size: 0.8rem;">Repair</button>';
+                default:
+                    return '';
+            }
+        }
+
+        function showBoxDetails(boxId) {
+            const box = coldBoxStorage[boxId];
+            if (!box) return;
+            
+            const modal = document.getElementById('shipmentModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalContent = document.getElementById('modalContent');
+            
+            modalTitle.textContent = `${box.id} - Cold Box Details & History`;
+            
+            // Calculate waste prevented
+            const avgBoxWeight = 4; // kg per box
+            const wastePrevented = (box.reuseCycles - 1) * avgBoxWeight;
+            const co2Saved = wastePrevented * 1.5; // kg CO2 per kg waste
+            const costSaved = (box.reuseCycles - 1) * 200; // RM per box
+            
+            modalContent.innerHTML = `
+                <div style="display: grid; gap: 20px;">
+                    <!-- Box Overview -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; padding: 20px; background: ${getRowBackgroundColor(box.status)}; border-radius: 8px; border-left: 4px solid ${getStatusColor(box.status)};">
+                        <div><strong>Box ID:</strong> ${box.id}</div>
+                        <div><strong>Current Status:</strong> <span style="color: ${getStatusColor(box.status)}; font-weight: bold;">${getStatusDisplayName(box.status)}</span></div>
+                        <div><strong>Location:</strong> ${box.location}</div>
+                        <div><strong>Condition:</strong> ${box.condition}</div>
+                        <div><strong>Reuse Cycles:</strong> <span style="font-size: 1.2rem; font-weight: bold; color: ${getCycleLevel(box.reuseCycles).color};">${box.reuseCycles}</span></div>
+                        <div><strong>Last Used:</strong> ${box.lastUsed} (${getDaysSinceUsed(box.lastUsed).text})</div>
+                        <div><strong>Next Maintenance:</strong> ${box.nextMaintenance}</div>
+                        <div><strong>Last Shipment:</strong> ${box.lastShipment || 'None'}</div>
+                        <div><strong>Current Shipment:</strong> ${box.currentShipment || 'None'}</div>
+                    </div>
+                    
+                    <!-- Environmental Impact -->
+                    <div>
+                        <h3 style="margin-bottom: 15px;">♻️ Environmental Impact (This Box)</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                            <div class="kpi-card" style="border-left-color: #5FA684;">
+                                <div class="kpi-value">${box.reuseCycles}</div>
+                                <div class="kpi-label">Total Uses</div>
+                            </div>
+                            <div class="kpi-card" style="border-left-color: #B0FC84;">
+                                <div class="kpi-value">${wastePrevented.toFixed(1)} kg</div>
+                                <div class="kpi-label">Waste Prevented</div>
+                            </div>
+                            <div class="kpi-card" style="border-left-color: #2C677B;">
+                                <div class="kpi-value">${co2Saved.toFixed(0)} kg</div>
+                                <div class="kpi-label">CO₂ Saved</div>
+                            </div>
+                            <div class="kpi-card" style="border-left-color: #ed8936;">
+                                <div class="kpi-value">RM ${costSaved.toLocaleString()}</div>
+                                <div class="kpi-label">Cost Saved</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Usage History -->
+                    <div>
+                        <h3 style="margin-bottom: 15px;">📋 Recent Usage History</h3>
+                        <div style="background: white; border-radius: 8px; overflow: hidden; border: 1px solid #e0e0e0;">
+                            <table style="width: 100%; font-size: 0.9rem;">
+                                <thead style="background: #f8f9fa;">
+                                    <tr>
+                                        <th style="padding: 10px;">Date</th>
+                                        <th style="padding: 10px;">Shipment</th>
+                                        <th style="padding: 10px;">Route</th>
+                                        <th style="padding: 10px;">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="padding: 8px;">${box.lastUsed}</td>
+                                        <td style="padding: 8px;">${box.lastShipment}</td>
+                                        <td style="padding: 8px;">Penang → KL</td>
+                                        <td style="padding: 8px;"><span class="status-badge status-pass">COMPLETED</span></td>
+                                    </tr>
+                                    <tr style="background: #f8f9fa;">
+                                        <td style="padding: 8px;">2025-01-10</td>
+                                        <td style="padding: 8px;">PG-OUT-${String(parseInt(box.lastShipment.split('-')[2]) - 1).padStart(3, '0')}</td>
+                                        <td style="padding: 8px;">Penang → Ipoh</td>
+                                        <td style="padding: 8px;"><span class="status-badge status-pass">COMPLETED</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px;">2025-01-05</td>
+                                        <td style="padding: 8px;">PG-OUT-${String(parseInt(box.lastShipment.split('-')[2]) - 2).padStart(3, '0')}</td>
+                                        <td style="padding: 8px;">Penang → Johor</td>
+                                        <td style="padding: 8px;"><span class="status-badge status-pass">COMPLETED</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    ${box.notes ? `
+                    <div style="padding: 15px; background: #f0f8ff; border-left: 4px solid #2C677B; border-radius: 8px;">
+                        <strong style="color: #2C677B;">📝 Notes:</strong><br>
+                        ${box.notes}
+                    </div>
+                    ` : ''}
+                    
+                    <!-- Action Buttons -->
+                    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                        <button class="btn btn-primary" onclick="printBoxLabel('${box.id}')">🏷️ Print Label</button>
+                        <button class="btn btn-secondary" onclick="exportBoxHistory('${box.id}')">📄 Export History</button>
+                        <button class="btn btn-secondary" onclick="editBoxDetails('${box.id}')">✏️ Edit Details</button>
+                        ${box.currentShipment ? 
+                            '<button class="btn btn-warning" onclick="trackShipment(\'' + box.currentShipment + '\')">🚚 Track Current Shipment</button>' : 
+                            '<button class="btn btn-primary" onclick="assignToShipment(\'' + box.id + '\')">➕ Assign to Shipment</button>'
+                        }
+                    </div>
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+        }
+
+        function showESGVisualization() {
+            const esgPanel = document.getElementById('esg-panel');
+            esgPanel.style.display = 'block';
+            esgPanel.scrollIntoView({ behavior: 'smooth' });
+            
+            // Update ESG metrics
+            updateESGMetrics();
+        }
+
+        function hideESGVisualization() {
+            document.getElementById('esg-panel').style.display = 'none';
+        }
+
+        function updateESGMetrics() {
+            const totalCycles = Object.values(coldBoxStorage).reduce((sum, box) => sum + box.reuseCycles, 0);
+            const avgCycles = Math.round(totalCycles / Object.keys(coldBoxStorage).length);
+            const wasteReduced = ((totalCycles - Object.keys(coldBoxStorage).length) / totalCycles * 100).toFixed(1);
+            const carbonSaved = Math.round((totalCycles - Object.keys(coldBoxStorage).length) * 4 * 1.5);
+            const costSavings = ((totalCycles - Object.keys(coldBoxStorage).length) * 200).toLocaleString();
+            
+            document.getElementById('total-reuses').textContent = totalCycles.toLocaleString();
+            document.getElementById('waste-prevented').textContent = wasteReduced + '%';
+            document.getElementById('carbon-saved').textContent = carbonSaved.toLocaleString();
+            document.getElementById('cost-savings').textContent = 'RM ' + costSavings;
+        }
+
+        // Box action functions
+        function assignToShipment(boxId) {
+            alert(`Assigning cold box ${boxId} to a new shipment...\n\nThis would integrate with the shipment creation system to assign this box to an outbound shipment.`);
+        }
+
+        function trackShipment(shipmentId) {
+            showOutboundDetails(shipmentId);
+        }
+
+        function startValidation(boxId) {
+            const box = coldBoxStorage[boxId];
+            if (box) {
+                box.status = 'validating';
+                box.location = 'Validation-Queue';
+                populateStorageTable();
+                showNotification(`Started validation process for ${boxId}`, 'info');
+            }
+        }
+
+        function completeValidation(boxId) {
+            const box = coldBoxStorage[boxId];
+            if (box) {
+                box.status = 'available';
+                box.location = `Bay-${String.fromCharCode(65 + Math.floor(Math.random() * 3))}${Math.floor(Math.random() * 6) + 1}`;
+                box.condition = 'Good';
+                populateStorageTable();
+                showNotification(`Validation completed for ${boxId} - Now available for use`, 'success');
+            }
+        }
+
+        function completeSterilisation(boxId) {
+            const box = coldBoxStorage[boxId];
+            if (box) {
+                box.status = 'available';
+                box.location = `Bay-${String.fromCharCode(65 + Math.floor(Math.random() * 3))}${Math.floor(Math.random() * 6) + 1}`;
+                box.condition = 'Excellent';
+                populateStorageTable();
+                showNotification(`Sterilisation completed for ${boxId} - Ready for use`, 'success');
+            }
+        }
+
+        function scheduleRepair(boxId) {
+            alert(`Scheduling repair for cold box ${boxId}...\n\nThis would create a maintenance ticket and notify the technical team.`);
+        }
+
+        function refreshStorageData() {
+            populateStorageTable();
+            showNotification('Cold box storage data refreshed', 'info');
+        }
+
+        function addNewColdBox() {
+            alert('Add New Cold Box\n\nThis would open a form to register a new cold box in the inventory system with:\n- Box ID\n- Initial location\n- Calibration data\n- Maintenance schedule');
+        }
+
+        function exportStorageData() {
+            alert('Exporting Cold Box Storage Data...\n\nThis would generate a comprehensive report including:\n- All box statuses\n- Usage history\n- Cycle counts\n- Maintenance schedules\n- ESG metrics');
+        }
+
+        function printBoxLabel(boxId) {
+            alert(`Printing QR code label for ${boxId}...\n\nThis would generate a printable QR code label containing box information for easy tracking.`);
+        }
+
+        function exportBoxHistory(boxId) {
+            alert(`Exporting history for ${boxId}...\n\nThis would create a detailed report with all usage history, temperature data, and maintenance records.`);
+        }
+
+        function editBoxDetails(boxId) {
+            alert(`Edit Details for ${boxId}\n\nThis would open a form to update:\n- Location\n- Condition\n- Notes\n- Maintenance schedule`);
+        }
+
+        // Initialize storage data when page loads
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Medical Cold Chain Dashboard initialized for Malaysia');
             initializeInteractiveMap();
             startRealTimeUpdates();
+            
+            // Initialize Cold Box Storage
+            populateStorageTable();
             
             // Request notification permission
             if ('Notification' in window && Notification.permission === 'default') {
