@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medical Cold Chain Monitoring Dashboard</title>
+    <title>VITABox Cold Chain Monitoring Dashboard</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <!-- Leaflet Map Library -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -212,7 +212,7 @@
             color: #091F2F;
         }
 
-        /* Cold Box Grid */
+        /* VITABox Grid */
         .coldbox-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -760,8 +760,7 @@
         <!-- Sidebar Navigation -->
         <div class="sidebar">
             <div class="logo">
-                <h2>Medical Cold Chain</h2>
-                <small>Malaysia</small>
+                <img src="static/VITABox Logo.png" alt="VITABox" style="max-width: 180px; height: auto; margin-bottom: 10px;">
             </div>
             
             <div class="nav-item active" onclick="showPage('home')">
@@ -786,7 +785,7 @@
             
             <div class="nav-item" onclick="showPage('cold-storage')">
                 <span class="nav-icon">📦</span>
-                Cold Box Inventory
+                VITABox Inventory
             </div>
             
             <div class="nav-item" onclick="showPage('reports')">
@@ -835,7 +834,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                             <div>
                                 <div class="kpi-value" style="color: white;">28</div>
-                                <div class="kpi-label" style="color: #dbeafe;">Active Cold Boxes Shipments</div>
+                                <div class="kpi-label" style="color: #dbeafe;">Active VITABoxes Shipments</div>
                             </div>
                             <div style="color: #60a5fa; font-size: 1.2rem;">� +3</div>
                         </div>
@@ -871,7 +870,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                             <div>
                                 <div class="kpi-value" style="color: white;">2,115</div>
-                                <div class="kpi-label" style="color: #bbf7d0;">2025 Cold Boxes Reused Cycles</div>
+                                <div class="kpi-label" style="color: #bbf7d0;">2025 VITABoxes Reused Cycles</div>
                             </div>
                             <div style="color: #86efac; font-size: 1.2rem;">♻️ +156</div>
                         </div>
@@ -890,21 +889,21 @@
                         <div class="alert alert-danger" onclick="navigateToAlert('MY-2025-093')">
                             <span>🚨</span>
                             <div>
-                                <strong>Cold Box #MY-2025-093</strong> exceeded 8°C in Kuala Lumpur → Singapore route
+                                <strong>VITABox #MY-2025-093</strong> exceeded 8°C in Kuala Lumpur → Singapore route
                                 <div style="font-size: 0.8em; color: #666;">5 minutes ago</div>
                             </div>
                         </div>
                         <div class="alert alert-warning" onclick="navigateToAlert('MY-2025-091')">
                             <span>⚠️</span>
                             <div>
-                                <strong>Cold Box #MY-2025-091</strong> approaching upper temperature limit
+                                <strong>VITABox #MY-2025-091</strong> approaching upper temperature limit
                                 <div style="font-size: 0.8em; color: #666;">22 minutes ago</div>
                             </div>
                         </div>
                         <div class="alert alert-warning" onclick="navigateToAlert('MY-2025-089')">
                             <span>⚠️</span>
                             <div>
-                                <strong>Cold Box #MY-2025-089</strong> battery below 25% - Penang facility
+                                <strong>VITABox #MY-2025-089</strong> battery below 25% - Penang facility
                                 <div style="font-size: 0.8em; color: #666;">1 hour ago</div>
                             </div>
                         </div>
@@ -934,17 +933,17 @@
                 </div>
             </div>
 
-            <!-- Nearby Cold Box (Bluetooth) Page -->
+            <!-- Nearby VITABox (Bluetooth) Page -->
             <div id="bluetooth" class="page">
-                <h1 style="margin-bottom: 30px;">PENANG DOCK - INCOMING SHIPMENTS</h1>
+                <h1 style="margin-bottom: 30px;">INCOMING SHIPMENTS</h1>
                 
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">Cold Box Arrival Scanner</h2>
+                        <h2 class="card-title">VITABox Arrival Scanner</h2>
                         <div style="display: flex; align-items: center; gap: 15px;">
                             <div style="display: flex; align-items: center; gap: 8px; color: #5FA684;">
                                 <span>📍</span>
-                                <strong>Current Location: Penang Medical Center</strong>
+                                <strong>Current Location: Penang VITABox Center</strong>
                             </div>
                         </div>
                     </div>
@@ -962,7 +961,7 @@
                         <div class="bluetooth-status" id="statusMessage" style="display: none;">
                             <div class="loading-spinner"></div>
                             <div>
-                                <strong id="scanningText">Scanning for incoming cold boxes at Penang dock...</strong>
+                                <strong id="scanningText">Scanning for incoming VITABoxes at Penang dock...</strong>
                                 <div class="scanning-dots">
                                     <span class="dot"></span>
                                     <span class="dot"></span>
@@ -1017,7 +1016,7 @@
                 <!-- Selected Shipments Table -->
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">Selected Cold Boxes</h2>
+                        <h2 class="card-title">Selected VITABoxes</h2>
                         <span id="selectedCount" style="color: #2C677B;">0 selected</span>
                     </div>
                     <div class="table-container">
@@ -1036,7 +1035,7 @@
                             <tbody id="selected-tbody">
                                 <tr>
                                     <td colspan="7" style="text-align: center; color: #2C677B; padding: 40px;">
-                                        No shipments selected. Use "Nearby Cold Box" to detect and select cold boxes.
+                                        No shipments selected. Use "Nearby VITABox" to detect and select VITABoxes.
                                     </td>
                                 </tr>
                             </tbody>
@@ -1056,7 +1055,7 @@
                         <div style="display: flex; align-items: center; gap: 15px;">
                             <div style="display: flex; align-items: center; gap: 8px; color: #5FA684;">
                                 <span>📍</span>
-                                <strong>Origin: Penang Medical Center</strong>
+                                <strong>Origin: Penang VITABox Center</strong>
                             </div>
                         </div>
                     </div>
@@ -1290,7 +1289,7 @@
                                     </td>
                                 </tr>
                                 
-                                <!-- Delivered Shipments (8) - Cold boxes unloaded, ready for return -->
+                                <!-- Delivered Shipments (8) - VITABoxes unloaded, ready for return -->
                                 <tr id="outbound-KLCC-001" style="background: #f0f8ff;">
                                     <td>PG-OUT-014</td>
                                     <td>KL City Center Clinic</td>
@@ -1298,7 +1297,7 @@
                                     <td>2025-09-27 08:30 MYT</td>
                                     <td><span style="color: #666;">N/A</span></td>
                                     <td><span class="status-badge" style="background: #0ea5e9; color: white;">Delivered</span></td>
-                                    <td>Delivered - Cold box unloaded</td>
+                                    <td>Delivered - VITABox unloaded</td>
                                     <td>Ready for return</td>
                                     <td>
                                         <button class="btn btn-secondary" onclick="showOutboundDetails('PG-OUT-014')">Details</button>
@@ -1311,7 +1310,7 @@
                                     <td>2025-01-14 09:15 MYT</td>
                                     <td><span style="color: #666;">N/A</span></td>
                                     <td><span class="status-badge" style="background: #0ea5e9; color: white;">Delivered</span></td>
-                                    <td>Delivered - Cold box unloaded</td>
+                                    <td>Delivered - VITABox unloaded</td>
                                     <td>Ready for return</td>
                                     <td>
                                         <button class="btn btn-secondary" onclick="showOutboundDetails('PG-OUT-015')">Details</button>
@@ -1357,7 +1356,7 @@
                                     </td>
                                 </tr>
                                 
-                                <!-- Returning Shipments (5) - Cold boxes on way back to Penang -->
+                                <!-- Returning Shipments (5) - VITABoxes on way back to Penang -->
                                 <tr id="outbound-AMP-001" style="background: #fefce8;">
                                     <td>PG-OUT-019</td>
                                     <td>Ampang Hospital → Penang</td>
@@ -1424,7 +1423,7 @@
                                     </td>
                                 </tr>
                                 
-                                <!-- Returned Shipments (3) - Cold boxes back at Penang for reuse -->
+                                <!-- Returned Shipments (3) - VITABoxes back at Penang for reuse -->
                                 <tr id="outbound-PET-001" style="background: #f0fdf4;">
                                     <td>PG-OUT-024</td>
                                     <td>Petaling Jaya Clinic</td>
@@ -1470,9 +1469,9 @@
                 </div>
             </div>
 
-            <!-- Cold Box Inventory & Storage Page -->
+            <!-- VITABox Inventory & Storage Page -->
             <div id="cold-storage" class="page">
-                <h1 style="margin-bottom: 30px;">COLD BOX INVENTORY & STORAGE</h1>
+                <h1 style="margin-bottom: 30px;">VITABox INVENTORY & STORAGE</h1>
                 
                 <!-- KPI Cards for Storage Overview -->
                 <div class="kpi-grid">
@@ -1480,7 +1479,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                             <div>
                                 <div class="kpi-value" id="total-boxes">45</div>
-                                <div class="kpi-label">Total Cold Boxes</div>
+                                <div class="kpi-label">Total VITABoxes</div>
                             </div>
                             <div style="color: #5FA684; font-size: 1.2rem;">📦</div>
                         </div>
@@ -1526,7 +1525,7 @@
                 <!-- Search and Filters -->
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">Search & Filter Cold Boxes</h2>
+                        <h2 class="card-title">Search & Filter VITABoxes</h2>
                         <div style="display: flex; align-items: center; gap: 15px;">
                             <div style="display: flex; align-items: center; gap: 8px; color: #5FA684;">
                                 <span>📍</span>
@@ -1577,10 +1576,10 @@
                     </div>
                 </div>
                 
-                <!-- Cold Box Inventory Table -->
+                <!-- VITABox Inventory Table -->
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">Cold Box Inventory</h2>
+                        <h2 class="card-title">VITABox Inventory</h2>
                         <div style="display: flex; gap: 10px; align-items: center;">
                             <span id="storage-count" style="color: #2C677B;">45 total boxes</span>
                             <button class="btn btn-secondary" onclick="refreshStorageData()">🔄 Refresh</button>
@@ -1678,7 +1677,7 @@
                             <select>
                                 <option>Medical Device Compliance</option>
                                 <option>Temperature Excursion Analysis</option>
-                                <option>Cold Box Performance</option>
+                                <option>VITABox Performance</option>
                                 <option>Malaysia Route Analysis</option>
                                 <option>Pharmaceutical Transport Summary</option>
                             </select>
@@ -1942,7 +1941,7 @@
     <div id="shipmentModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 id="modalTitle">Cold Box Details</h2>
+                <h2 id="modalTitle">VITABox Details</h2>
                 <span class="close" onclick="closeModal()">&times;</span>
             </div>
             <div id="modalContent">
@@ -1952,7 +1951,7 @@
     </div>
 
     <script>
-        // Sample data for Malaysian medical cold chain - INCOMING TO PENANG
+        // Sample data for Malaysian VITABox cold chain - INCOMING TO PENANG
         const coldBoxData = {
             'MY-2025-093': {
                 id: 'MY-2025-093',
@@ -2089,7 +2088,7 @@
             }
         };
 
-        // Cold Box Storage/Inventory Data for Penang Hub
+        // VITABox Storage/Inventory Data for Penang Hub
         const coldBoxStorage = {
             // Available boxes (ready for use)
             'MCB-4401': { id: 'MCB-4401', status: 'available', lastShipment: 'PG-OUT-024', currentShipment: null, reuseCycles: 87, lastUsed: '2025-09-27', nextMaintenance: '2025-10-15', location: 'Bay-A1', condition: 'Excellent', notes: 'High-performance veteran box' },
@@ -2164,7 +2163,7 @@
             const results = [];
             query = query.toLowerCase();
             
-            // Search through cold box data
+            // Search through VITABox data
             Object.values(coldBoxData).forEach(box => {
                 if (box.id.toLowerCase().includes(query) || 
                     box.vaccine.toLowerCase().includes(query) ||
@@ -2198,7 +2197,7 @@
                 }
             });
             
-            // Search through cold box storage
+            // Search through VITABox storage
             Object.values(coldBoxStorage).forEach(box => {
                 if (box.id.toLowerCase().includes(query) ||
                     box.lastShipment?.toLowerCase().includes(query) ||
@@ -2206,7 +2205,7 @@
                     box.notes.toLowerCase().includes(query) ||
                     box.location.toLowerCase().includes(query)) {
                     results.push({
-                        type: 'Cold Box',
+                        type: 'VITABox',
                         id: box.id,
                         status: box.status,
                         location: box.location,
@@ -2320,7 +2319,7 @@
             switch(kpiType) {
                 case 'active-shipments':
                     showPageDirectly('outbound');
-                    showNotification('Showing active cold box shipments from Penang', 'info');
+                    showNotification('Showing active VITABox shipments from Penang', 'info');
                     break;
                 case 'alerts':
                     showPageDirectly('alerts');
@@ -2344,7 +2343,7 @@
         const coldChainLocations = [
             // Malaysia - Peninsular
             { id: 'KL-001', name: 'Kuala Lumpur Central Hub', lat: 3.1390, lng: 101.6869, status: 'active', count: 4, temp: 5.2 },
-            { id: 'PG-001', name: 'Penang Medical Center', lat: 5.4164, lng: 100.3327, status: 'active', count: 2, temp: 4.8 },
+            { id: 'PG-001', name: 'Penang VITABox Center', lat: 5.4164, lng: 100.3327, status: 'active', count: 2, temp: 4.8 },
             { id: 'JB-001', name: 'Johor Bahru Distribution', lat: 1.4927, lng: 103.7414, status: 'warning', count: 3, temp: 7.6 },
             { id: 'IP-001', name: 'Ipoh Regional Hub', lat: 4.5975, lng: 101.0901, status: 'active', count: 1, temp: 3.9 },
             { id: 'MLK-001', name: 'Melaka Storage Facility', lat: 2.1896, lng: 102.2501, status: 'active', count: 2, temp: 5.7 },
@@ -2466,7 +2465,7 @@
                 
                 // Phase 2: Scanning dock
                 setTimeout(() => {
-                    scanningText.innerHTML = 'Scanning Penang dock for arrived cold boxes...';
+                    scanningText.innerHTML = 'Scanning Penang dock for arrived VITABoxes...';
                 }, 800);
                 
                 // Phase 3: Found shipments
@@ -2480,7 +2479,7 @@
                         <span style="color: #5FA684; font-size: 20px;">🚢</span>
                         <div>
                             <strong>Dock Scan Complete!</strong><br>
-                            <small style="color: #2C677B;">5 cold boxes arrived and ready for processing</small>
+                            <small style="color: #2C677B;">5 VITABoxes arrived and ready for processing</small>
                         </div>
                     `;
                     displayArrivedColdBoxes();
@@ -2495,7 +2494,7 @@
             }
         }
 
-        // Display Arrived Cold Boxes at Penang Dock
+        // Display Arrived VITABoxes at Penang Dock
         function displayArrivedColdBoxes() {
             const grid = document.getElementById('coldbox-grid');
             grid.innerHTML = '';
@@ -2639,7 +2638,7 @@
             }, 3000);
         }
 
-        // Toggle Cold Box Selection (legacy function for compatibility)
+        // Toggle VITABox Selection (legacy function for compatibility)
         function toggleColdBoxSelection(boxId) {
             // For dock interface, we use confirmation instead of direct toggle
             confirmAddToShipments(boxId);
@@ -2656,7 +2655,7 @@
                 tbody.innerHTML = `
                     <tr>
                         <td colspan="7" style="text-align: center; color: #2C677B; padding: 40px;">
-                            No shipments selected. Use "Nearby Cold Box" to detect and select cold boxes.
+                            No shipments selected. Use "Nearby VITABox" to detect and select VITABoxes.
                         </td>
                     </tr>
                 `;
@@ -2688,7 +2687,7 @@
             });
         }
 
-        // Remove Cold Box from Selection
+        // Remove VITABox from Selection
         function removeColdBox(boxId) {
             selectedColdBoxes.delete(boxId);
             updateSelectedShipmentsTable();
@@ -2697,7 +2696,7 @@
             }
         }
 
-        // Show Cold Box Details Modal
+        // Show VITABox Details Modal
         function showColdBoxDetails(boxId) {
             const box = coldBoxData[boxId];
             if (!box) return;
@@ -2970,13 +2969,13 @@
                     departure: '2025-01-14 08:30 MYT',
                     delivered: '2025-01-14 15:45 MYT',
                     status: 'Delivered',
-                    currentLocation: 'Delivered - Cold box unloaded',
+                    currentLocation: 'Delivered - VITABox unloaded',
                     driver: 'Lim Wei Jie',
                     vehicle: 'Cold Chain Truck PG-CC-014',
                     route: 'Penang → KL City Center',
                     distance: '350 km',
                     progress: '100%',
-                    deliveryNote: 'All vaccines successfully delivered and stored. Cold box ready for return journey.'
+                    deliveryNote: 'All vaccines successfully delivered and stored. VITABox ready for return journey.'
                 },
                 // Returning shipments
                 'PG-OUT-019': {
@@ -2994,11 +2993,11 @@
                     currentLocation: 'En route to Penang - Slim River',
                     eta: '2025-01-15 16:30 MYT',
                     driver: 'Muthu Kumar',
-                    vehicle: 'Empty Cold Box Return Truck RET-019',
+                    vehicle: 'Empty VITABox Return Truck RET-019',
                     route: 'Ampang → Slim River → Penang',
                     distance: '385 km',
                     progress: '65%',
-                    returnNote: 'Empty cold box returning to Penang hub for cleaning and reuse'
+                    returnNote: 'Empty VITABox returning to Penang hub for cleaning and reuse'
                 },
                 // Returned shipments
                 'PG-OUT-024': {
@@ -3016,11 +3015,11 @@
                     status: 'Returned',
                     currentLocation: 'Returned to Penang Hub',
                     driver: 'Chan Ah Kow',
-                    vehicle: 'Completed - Cold Box at Penang',
+                    vehicle: 'Completed - VITABox at Penang',
                     route: 'Penang → PJ → Penang (Complete)',
                     distance: '750 km (Total)',
                     progress: '100%',
-                    completedCycle: 'Cold box has returned to Penang hub'
+                    completedCycle: 'VITABox has returned to Penang hub'
                 }
             };
 
@@ -3163,7 +3162,7 @@
                         <strong style="color: #0ea5e9;">📦 DELIVERY COMPLETED:</strong><br>
                         Delivered: ${shipment.delivered}<br>
                         ${shipment.deliveryNote}<br>
-                        <strong>Cold box ready for return to Penang hub</strong>
+                        <strong>VITABox ready for return to Penang hub</strong>
                     </div>
                     ` : shipment.status === 'Returning' ? `
                     <div style="padding: 15px; background: #fefce8; border-left: 4px solid #f59e0b; border-radius: 8px;">
@@ -3255,11 +3254,11 @@
 
         // Export functions
         function exportPDF(boxId) {
-            alert(`Generating compliance PDF report for medical cold box ${boxId}...`);
+            alert(`Generating compliance PDF report for medical VITABox ${boxId}...`);
         }
 
         function exportCSV(boxId) {
-            alert(`Generating temperature data CSV for cold box ${boxId}...`);
+            alert(`Generating temperature data CSV for VITABox ${boxId}...`);
         }
 
         // Close modal when clicking outside
@@ -3270,7 +3269,7 @@
             }
         }
 
-        // Cold Box Storage Functions
+        // VITABox Storage Functions
         function filterStorageByStatus(status) {
             // Update status filter and apply filter
             const statusFilter = document.getElementById('storage-status-filter');
@@ -3360,7 +3359,7 @@
                 tbody.innerHTML = `
                     <tr>
                         <td colspan="8" style="text-align: center; color: #2C677B; padding: 40px;">
-                            No cold boxes found matching the current filters.
+                            No VITABoxes found matching the current filters.
                         </td>
                     </tr>
                 `;
@@ -3533,7 +3532,7 @@
             const modalTitle = document.getElementById('modalTitle');
             const modalContent = document.getElementById('modalContent');
             
-            modalTitle.textContent = `${box.id} - Cold Box Details & History`;
+            modalTitle.textContent = `${box.id} - VITABox Details & History`;
             
             // Calculate waste prevented
             const avgBoxWeight = 4; // kg per box
@@ -3667,7 +3666,7 @@
 
         // Box action functions
         function assignToShipment(boxId) {
-            alert(`Assigning cold box ${boxId} to a new shipment...\n\nThis would integrate with the shipment creation system to assign this box to an outbound shipment.`);
+            alert(`Assigning VITABox ${boxId} to a new shipment...\n\nThis would integrate with the shipment creation system to assign this box to an outbound shipment.`);
         }
 
         function trackShipment(shipmentId) {
@@ -3707,20 +3706,20 @@
         }
 
         function scheduleRepair(boxId) {
-            alert(`Scheduling repair for cold box ${boxId}...\n\nThis would create a maintenance ticket and notify the technical team.`);
+            alert(`Scheduling repair for VITABox ${boxId}...\n\nThis would create a maintenance ticket and notify the technical team.`);
         }
 
         function refreshStorageData() {
             populateStorageTable();
-            showNotification('Cold box storage data refreshed', 'info');
+            showNotification('VITABox storage data refreshed', 'info');
         }
 
         function addNewColdBox() {
-            alert('Add New Cold Box\n\nThis would open a form to register a new cold box in the inventory system with:\n- Box ID\n- Initial location\n- Calibration data\n- Maintenance schedule');
+            alert('Add New VITABox\n\nThis would open a form to register a new VITABox in the inventory system with:\n- Box ID\n- Initial location\n- Calibration data\n- Maintenance schedule');
         }
 
         function exportStorageData() {
-            alert('Exporting Cold Box Storage Data...\n\nThis would generate a comprehensive report including:\n- All box statuses\n- Usage history\n- Cycle counts\n- Maintenance schedules\n- ESG metrics');
+            alert('Exporting VITABox Storage Data...\n\nThis would generate a comprehensive report including:\n- All box statuses\n- Usage history\n- Cycle counts\n- Maintenance schedules\n- ESG metrics');
         }
 
         function printBoxLabel(boxId) {
@@ -3737,11 +3736,11 @@
 
         // Initialize storage data when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Medical Cold Chain Dashboard initialized for Malaysia');
+            console.log('VITABox Cold Chain Dashboard initialized for Malaysia');
             initializeInteractiveMap();
             startRealTimeUpdates();
             
-            // Initialize Cold Box Storage
+            // Initialize VITABox Storage
             populateStorageTable();
             
             // Request notification permission
@@ -3751,7 +3750,7 @@
             
             // Show welcome notification
             setTimeout(() => {
-                showNotification('Welcome to Vaccine Cold Chain Monitoring Dashboard', 'info');
+                showNotification('Welcome to VITABox Cold Chain Monitoring Dashboard', 'info');
             }, 1000);
         });
         
@@ -3832,7 +3831,7 @@
                 
                 // Create custom marker
                 const marker = L.circleMarker([location.lat, location.lng], {
-                    radius: 8 + (location.count * 2), // Size based on number of cold boxes
+                    radius: 8 + (location.count * 2), // Size based on number of VITABoxes
                     fillColor: markerColor,
                     color: '#ffffff',
                     weight: 2,
@@ -3846,7 +3845,7 @@
                         <h3 style="margin: 0 0 10px 0; color: #091F2F; font-size: 1.1rem;">${location.name}</h3>
                         <div style="display: grid; gap: 5px; font-size: 0.9rem;">
                             <div><strong>Status:</strong> <span style="color: ${markerColor}; text-transform: uppercase; font-weight: bold;">${location.status}</span></div>
-                            <div><strong>Cold Boxes:</strong> ${location.count} active</div>
+                            <div><strong>VITABoxes:</strong> ${location.count} active</div>
                             <div><strong>Avg Temperature:</strong> ${location.temp}°C</div>
                             <div><strong>Location ID:</strong> ${location.id}</div>
                         </div>
@@ -3919,7 +3918,7 @@
         function viewLocationDetails(locationId) {
             const location = coldChainLocations.find(loc => loc.id === locationId);
             if (location) {
-                alert(`Viewing details for ${location.name}\n\nStatus: ${location.status.toUpperCase()}\nCold Boxes: ${location.count}\nAverage Temperature: ${location.temp}°C\nLocation ID: ${location.id}\n\nThis would open a detailed facility view in a production system.`);
+                alert(`Viewing details for ${location.name}\n\nStatus: ${location.status.toUpperCase()}\nVITABoxes: ${location.count}\nAverage Temperature: ${location.temp}°C\nLocation ID: ${location.id}\n\nThis would open a detailed facility view in a production system.`);
             }
         }
 
