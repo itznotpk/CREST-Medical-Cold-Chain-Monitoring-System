@@ -58,7 +58,9 @@ This is a **frontend prototype** showcasing the dashboard interface with interac
 ```
 Medical-Cold-Chain-Monitoring-System/
 │
-├── index.html              # Main dashboard HTML (single-page application)
+├── index.html              # Main dashboard HTML
+├── styles.css              # All CSS styles (separated)
+├── app.js                  # All JavaScript functionality (separated)
 ├── vitaboxlogo.png         # Brand logo
 └── README.md               # This file
 ```
