@@ -1,4 +1,4 @@
-# CREST - Medical Cold Chain Monitoring System
+# Medical Cold Chain Monitoring System
 
 **Intelligent Cold Chain Monitoring Dashboard for Vaccine & Medical Product Storage**
 
@@ -8,7 +8,7 @@
 
 ## Overview
 
-**CREST** (Cold Chain Real-time Exposure Sentinel Technology) is an interactive web-based dashboard for monitoring and managing medical cold chain logistics. The system tracks temperature, location, and equipment status for vaccine storage and medical products in real-time.
+This is an interactive web-based dashboard for monitoring and managing medical cold chain logistics. The system tracks temperature, location, and equipment status for vaccine storage and medical products in real-time.
 
 This is a **frontend prototype** showcasing the dashboard interface with interactive visualization, KPI monitoring, and multi-page navigation.
 
@@ -56,7 +56,7 @@ This is a **frontend prototype** showcasing the dashboard interface with interac
 ## Project Structure
 
 ```
-CREST-Medical-Cold-Chain-Monitoring-System/
+Medical-Cold-Chain-Monitoring-System/
 │
 ├── index.html              # Main dashboard HTML (single-page application)
 ├── vitaboxlogo.png         # Brand logo
@@ -150,4 +150,4 @@ Use the sidebar menu to switch between:
 
 ---
 
-**CREST** - Protecting Vaccines & Medical Products Through Intelligent Monitoring
+Protecting Vaccines & Medical Products Through Intelligent Monitoring
